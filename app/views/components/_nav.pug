@@ -1,6 +1,7 @@
 nav.navbar
-	div.container
-		ul.nav.nav-navbar
-			each value, i in content.site.navRight.links
+	div.container.navbar__container
+		ul.nav-navbar
+			each value, i in content.site.nav.links
 				li.nav-navbar__item
-					a.nav-navbar__link(href= value.href)= value.displayName
+					a.nav-navbar__link(href= value.href)
+						span.nav-navbar__text= value.displayName

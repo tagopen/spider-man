@@ -236,7 +236,7 @@ gulp.task('test', () => {
 gulp.task('watch', ['browser-sync', 'pug', 'fonts', 'sprite', 'sass',  'scripts'], () => {
   gulp.watch(path.watch.spritePng, ['sprite']);
   gulp.watch(path.watch.style, ['sass']);
-  gulp.watch(path.watch.template, ['pug']);
+  gulp.watch(path.watch.template, browserSync.reload);
   gulp.watch(path.watch.fonts, ['fonts']);
   gulp.watch(path.watch.js, browserSync.reload);
 });

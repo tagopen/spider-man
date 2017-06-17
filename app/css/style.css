@@ -108,18 +108,6 @@
 /* ---------------------------------------- */
 /* G E N E R A L    S T Y L E               */
 /* ---------------------------------------- */
-.ic {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.ic:before {
-  content: '';
-  display: inline-block;
-  vertical-align: middle;
-}
-
 /* form */
 .text-danger {
   color: #b94a48;
@@ -156,6 +144,95 @@
   }
 }
 
+/* icons */
+.ic {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.ic:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ic:before {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 767px) {
+  .ic--marvel:before {
+    width: 39px;
+    height: 9px;
+    background-image: url(../img/marvel-s.png);
+  }
+  .ic--spidermanBlack:before {
+    width: 277px;
+    height: 55px;
+    background-image: url(../img/spiderman-black-m.png);
+  }
+  .ic--spidermanWhite:before {
+    width: 278px;
+    height: 54px;
+    background-image: url(../img/spiderman-white-m.png);
+  }
+  .ic--real3dWhite:before {
+    width: 88px;
+    height: 10px;
+    background-image: url(../img/real3d-white-s.png);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .ic--marvel:before {
+    width: 68px;
+    height: 15px;
+  }
+  .ic--spidermanBlack:before {
+    width: 432px;
+    height: 85px;
+    background-image: url(../img/spiderman-black-s.png);
+  }
+  .ic--spidermanWhite:before {
+    width: 478px;
+    height: 94px;
+    background-image: url(../img/spiderman-white-s.png);
+  }
+  .ic--real3dWhite {
+    margin-top: -3px;
+  }
+  .ic--real3dWhite:before {
+    width: 151px;
+    height: 17px;
+    background-image: url(../img/real3d-white-s.png);
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .ic--marvel:before {
+    width: 105px;
+    height: 23px;
+    background-image: url(../img/marvel.png);
+  }
+  .ic--spidermanBlack:before {
+    width: 618px;
+    height: 122px;
+    background-image: url(../img/spiderman-black.png);
+  }
+  .ic--spidermanWhite:before {
+    width: 742px;
+    height: 145px;
+    background-image: url(../img/spiderman-white.png);
+  }
+  .ic--real3dWhite:before {
+    width: 235px;
+    height: 27px;
+    background-image: url(../img/real3d-white.png);
+  }
+}
+
 /* modal */
 .modal {
   -webkit-overflow-scrolling: touch;
@@ -166,24 +243,300 @@
 /* ---------------------------------------- */
 /* H O M E    P A G E    S T Y L E          */
 /* ---------------------------------------- */
+.body {
+  background-color: #070707;
+}
+
 /* ---------------------------------------- */
-/* H O M E    N A V    S T Y L E            */
+/* S E C T I O N    N A V    S T Y L E      */
 /* ---------------------------------------- */
+.navbar {
+  margin: 0;
+  background-color: #181818;
+}
+
+.nav-navbar {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  list-style-type: none;
+}
+
+.nav-navbar__item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.nav-navbar__link {
+  display: block;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.nav-navbar__link:hover, .nav-navbar__link:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-navbar__link:hover .nav-navbar__text:before, .nav-navbar__link:focus .nav-navbar__text:before {
+  width: 100%;
+}
+
+.nav-navbar__text {
+  position: relative;
+  border-bottom: 1px dashed #fff;
+}
+
+.nav-navbar__text:before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 1px;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar__container {
+    padding: 0;
+  }
+  .nav-navbar__item {
+    display: table-cell;
+    width: 1%;
+    border-left: 1px solid #282828;
+  }
+  .nav-navbar__item:first-of-type {
+    margin-right: -1px;
+    border-left: none;
+  }
+  .nav-navbar__link {
+    padding: 22px 13px;
+    font: 700 12px/14px "PTSansProNarrow", sans-serif;
+  }
+  .nav-navbar__link:hover, .nav-navbar__link:focus {
+    background-color: #222222;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .nav-navbar {
+    font: 700 20px/30px "PTSansProNarrow", sans-serif;
+  }
+  .nav-navbar__link {
+    padding: 33px 13px 29px;
+  }
+  .nav-navbar__text {
+    border-bottom-width: 2px;
+  }
+  .nav-navbar__text:before {
+    height: 2px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .nav-navbar__link {
+    padding: 20px 13px;
+    font: 700 25px/53px "PTSansProNarrow", sans-serif;
+  }
+}
+
+/* ------------------------------------------ */
+/* S E C T I O N    H E A D E R    S T Y L E  */
+/* ------------------------------------------ */
+.header {
+  position: relative;
+  text-align: center;
+}
+
+.header__icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 0;
+}
+
+.header__icon:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+}
+
+.header__container {
+  position: relative;
+  z-index: 2;
+}
+
+.header__heading {
+  margin: 0;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.header__text {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.header__text--prize {
+  position: relative;
+}
+
+.age {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: .46;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  color: #fff;
+}
+
+@media only screen and (max-width: 767px) {
+  .header {
+    padding: 61px 0 36px;
+  }
+  .header__icon {
+    background-image: url(../img/header-m.png);
+  }
+  .header__icon:before {
+    background-image: url(../img/header-shadow-m.png);
+  }
+  .header__heading {
+    padding-bottom: 10px;
+    font: 300 17px/19px "PTSansProNarrow", sans-serif;
+    letter-spacing: 5px;
+  }
+  .header__text--date {
+    font: 700 22px/27px "PTSansProNarrow", sans-serif;
+  }
+  .header__text--format {
+    padding: 10px 0;
+    font: 900 14px/14px "PTSansProNarrow", sans-serif;
+  }
+  .header__text--prize {
+    padding-left: 9px;
+    font: 900 22px/24px "PTSansProNarrow", sans-serif;
+  }
+  .age {
+    padding: 7px 0;
+    width: 22px;
+    height: 22px;
+    top: -3px;
+    right: -9px;
+    -webkit-box-shadow: 0 0 0 1px #fff;
+            box-shadow: 0 0 0 1px #fff;
+    font: 300 7px/9px "PTSansProNarrow", sans-serif;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 109px 38px 50px;
+  }
+  .header__icon {
+    background-image: url(../img/header-s.png);
+  }
+  .header__icon:before {
+    background-image: url(../img/header-shadow-s.png);
+  }
+  .header__heading {
+    font: 300 30px/33px "PTSansProNarrow", sans-serif;
+    letter-spacing: 8px;
+  }
+  .header__text {
+    line-height: 50px;
+  }
+  .header__text--date {
+    font: 700 39px/51px "PTSansProNarrow", sans-serif;
+  }
+  .header__text--format {
+    font: 700 24px/50px "PTSansProNarrow", sans-serif;
+  }
+  .header__text--prize {
+    font: 900 43px/69px "PTSansProNarrow", sans-serif;
+    letter-spacing: 1px;
+  }
+  .age {
+    padding: 12px 0;
+    width: 39px;
+    height: 39px;
+    top: -11px;
+    right: -46px;
+    -webkit-box-shadow: 0 0 0 2px #fff;
+            box-shadow: 0 0 0 2px #fff;
+    font: 300 14px/18px "PTSansProNarrow", sans-serif;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .header {
+    padding: 127px 90px 94px;
+  }
+  .header__icon {
+    background-image: url(../img/header.png);
+  }
+  .header__icon:before {
+    background-image: url(../img/header-shadow.png);
+  }
+  .header__heading {
+    font: 300 46px/48px "PTSansProNarrow", sans-serif;
+    letter-spacing: 10px;
+  }
+  .header__text {
+    line-height: 78px;
+  }
+  .header__text--date {
+    font-size: 63px;
+    line-height: 86px;
+  }
+  .header__text--format {
+    font-size: 40px;
+    line-height: 70px;
+  }
+  .header__text--prize {
+    font-size: 64px;
+    line-height: 107px;
+  }
+  .age {
+    width: 62px;
+    height: 62px;
+    top: -16px;
+    right: -108px;
+    -webkit-box-shadow: 0 0 0 3px #fff;
+            box-shadow: 0 0 0 3px #fff;
+    font: 300 23px/42px "PTSansProNarrow", sans-serif;
+    text-transform: uppercase;
+  }
+}
+
+/* ------------------------------------------ */
+/* S E C T I O N    A C T I O N    S T Y L E  */
+/* ------------------------------------------ */
 /* ---------------------------------------- */
-/* H O M E    H E A D E R    S T Y L E      */
+/* S E C T I O N    V I D E O    S T Y L E  */
 /* ---------------------------------------- */
+/* -------------------------------------------- */
+/* S E C T I O N    P R O D U C T    S T Y L E  */
+/* -------------------------------------------- */
 /* ---------------------------------------- */
-/* H O M E    A C T I O N    S T Y L E      */
+/* S E C T I O N    P R O M O    S T Y L E  */
 /* ---------------------------------------- */
-/* ---------------------------------------- */
-/* H O M E    V I D E O    S T Y L E        */
-/* ---------------------------------------- */
-/* ---------------------------------------- */
-/* H O M E    P R O D U C T    S T Y L E    */
-/* ---------------------------------------- */
-/* ---------------------------------------- */
-/* H O M E    P R O M O    S T Y L E        */
-/* ---------------------------------------- */
-/* ---------------------------------------- */
-/* H O M E    F O O T E R    S T Y L E      */
-/* ---------------------------------------- */
+/* ------------------------------------------ */
+/* S E C T I O N    F O O T E R    S T Y L E  */
+/* ------------------------------------------ */

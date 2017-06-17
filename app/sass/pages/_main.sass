@@ -1,5 +1,5 @@
 +comment('general style')
-+ic
+
 +cm('form')
 .text-danger
   color: $text-danger
@@ -16,32 +16,289 @@
     background-position: 40px 0
   to
     background-position: 0 0
++cm('icons')
++ic
+.ic
+  &:before
+    background-size: contain
+    background-repeat: no-repeat
++rx(767)
+  .ic
+    &--marvel
+      &:before
+        width: 39px
+        height: 9px
+        background-image: url(../img/marvel-s.png)
+    &--spidermanBlack
+      &:before
+        width: 277px
+        height: 55px
+        background-image: url(../img/spiderman-black-m.png)
+    &--spidermanWhite
+      &:before
+        width: 278px
+        height: 54px
+        background-image: url(../img/spiderman-white-m.png)
+    &--real3dWhite
+      &:before
+        width: 88px
+        height: 10px
+        background-image: url(../img/real3d-white-s.png)
++r(768)
+  .ic
+    &--marvel
+      &:before
+        width: 68px
+        height: 15px
+    &--spidermanBlack
+      &:before
+        width: 432px
+        height: 85px
+        background-image: url(../img/spiderman-black-s.png)
+    &--spidermanWhite
+      &:before
+        width: 478px
+        height: 94px
+        background-image: url(../img/spiderman-white-s.png)
+    &--real3dWhite
+      margin-top: -3px
+      &:before
+        width: 151px
+        height: 17px
+        background-image: url(../img/real3d-white-s.png)
++r(1000)
+  .ic
+    &--marvel
+      &:before
+        width: 105px
+        height: 23px
+        background-image: url(../img/marvel.png)
+    &--spidermanBlack
+      &:before
+        width: 618px
+        height: 122px
+        background-image: url(../img/spiderman-black.png)
+    &--spidermanWhite
+      &:before
+        width: 742px
+        height: 145px
+        background-image: url(../img/spiderman-white.png)
+    &--real3dWhite
+      &:before
+        width: 235px
+        height: 27px
+        background-image: url(../img/real3d-white.png)
 +cm('modal')
 .modal
   -webkit-overflow-scrolling: touch
   transform: translateZ(0)
 
 +comment('home page style')
+.body
+  background-color: $body-bg
 
-+comment('home nav style')
-.nav
-
-+comment('home header style')
++comment('section nav style')
+.navbar
+  margin: 0
+  background-color: $navbar-bg
+.nav-navbar
+  margin: 0
+  padding: 0
+  text-align: center
+  list-style-type: none
+  &__item
+    display: inline-block
+    vertical-align: top
+  &__link
+    display: block
+    color: $navbar-text
+    text-transform: uppercase
+    &:hover,
+    &:focus
+      color: $navbar-text
+      text-decoration: none
+      .nav-navbar__text
+        &:before
+          width: 100%
+  &__text
+    position: relative
+    border-bottom: 1px dashed $navbar-text-border
+    &:before
+      content: ''
+      position: absolute
+      display: block
+      width: 0
+      height: 1px
+      top: 100%
+      left: 0
+      background: $navbar-text-border
+      transition: all .3s ease-out
++rx(767)
+  .navbar
+    &__container
+      padding: 0
+  .nav-navbar
+    &__item
+      display: table-cell
+      width: 1%
+      border-left: 1px solid $navbar-border
+      &:first-of-type
+        margin-right: -1px
+        border-left: none
+    &__link
+      padding: 22px 13px
+      font: 700 12px/14px $main-font
+      &:hover,
+      &:focus
+        background-color: $navbar-bg-hover
++r(768)
+  .nav-navbar
+    font: 700 20px/30px $main-font
+    &__link
+      padding: 33px 13px 29px
+    &__text
+      border-bottom-width: 2px
+      &:before
+        height: 2px
++r(1000)
+  .nav-navbar
+    &__link
+      padding: 20px 13px
+      font: 700 25px/53px $main-font
++comment('section header style')
 .header
+  position: relative
+  text-align: center
+  &__icon
+    +coverdiv
+    background-position: 50% 0
+    background-repeat: no-repeat
+    background-size: contain
+    z-index: 0
+    &:before
+      content: ''
+      +coverdiv
+      background-position: 50% 50%
+      background-repeat: no-repeat
+      background-size: cover
+      z-index: 1
+  &__container
+    position: relative
+    z-index: 2
+  &__heading
+    margin: 0
+    color: $header-text
+    text-transform: uppercase
+  &__text
+    color: $header-text
+    text-transform: uppercase
+    &--prize
+      position: relative
+.age
+  position: relative
+  display: inline-block
+  vertical-align: middle
+  opacity: .46
+  +br(50%)
+  color: $age-color
++rx(767)
+  .header
+    padding: 61px 0 36px
+    &__icon
+      background-image: url(../img/header-m.png)
+      &:before
+        background-image: url(../img/header-shadow-m.png)
+    &__heading
+      padding-bottom: 10px
+      font: 300 17px/19px $main-font
+      letter-spacing: 5px
+    &__text
+      &--date
+        font: 700 22px/27px $main-font
+      &--format
+        padding: 10px 0
+        font: 900 14px/14px $main-font
+      &--prize    
+        padding-left: 9px
+        font: 900 22px/24px $main-font
+  .age
+    padding: 7px 0
+    width: 22px
+    height: 22px
+    top: -3px
+    right: -9px
+    box-shadow: 0 0 0 1px $age-shadow-color 
+    font: 300 7px/9px $main-font
++r(768)
+  .header
+    padding: 109px 38px 50px
+    &__icon
+      background-image: url(../img/header-s.png)
+      &:before
+        background-image: url(../img/header-shadow-s.png)
+    &__heading
+      font: 300 30px/33px $main-font
+      letter-spacing: 8px
+    &__text
+      line-height: 50px
+      &--date
+        font: 700 39px/51px $main-font
+      &--format
+        font: 700 24px/50px $main-font
+      &--prize   
+        font: 900 43px/69px $main-font
+        letter-spacing: 1px
+  .age
+    padding: 12px 0
+    width: 39px
+    height: 39px
+    top: -11px
+    right: -46px
+    box-shadow: 0 0 0 2px $age-shadow-color 
+    font: 300 14px/18px $main-font
++r(1000)
+  .header
+    padding: 127px 90px 94px
+    &__icon
+      background-image: url(../img/header.png)
+      &:before
+        background-image: url(../img/header-shadow.png)
+    &__heading
+      font: 300 46px/48px $main-font
+      letter-spacing: 10px
+    &__text
+      line-height: 78px
+      &--date
+        font-size: 63px
+        line-height: 86px
+      &--format
+        font-size: 40px
+        line-height: 70px
+      &--prize   
+        font-size: 64px
+        line-height: 107px
+  .age
+    width: 62px
+    height: 62px
+    top: -16px
+    right: -108px
+    box-shadow: 0 0 0 3px $age-shadow-color
+    font: 300 23px/42px $main-font
+    text-transform: uppercase
 
-+comment('home action style')
++comment('section action style')
 .action
 
-+comment('home video style')
++comment('section video style')
 .video
 
-+comment('home product style')
++comment('section product style')
 .product
 
-+comment('home promo style')
++comment('section promo style')
 .promo
 
-+comment('home footer style')
++comment('section footer style')
 .footer
 
 
