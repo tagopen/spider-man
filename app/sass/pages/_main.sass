@@ -22,6 +22,12 @@
   &:before
     background-size: contain
     background-repeat: no-repeat
+  &--plane
+    &:before
+      background-image: url(../img/icons/navigation.png)
+  &--cinema
+    &:before
+      background-image: url(../img/icons/film-roll.png)
 +rx(767)
   .ic
     &--marvel
@@ -44,6 +50,19 @@
         width: 88px
         height: 10px
         background-image: url(../img/real3d-white-s.png)
+    &--real3dBlack
+      &:before
+        width: 104px
+        height: 12px
+        background-image: url(../img/real3d-black-s.png)
+    &--plane
+      &:before
+        width: 27px
+        height: 27px
+    &--cinema
+      &:before
+        width: 22px
+        height: 25px
 +r(768)
   .ic
     &--marvel
@@ -66,6 +85,19 @@
         width: 151px
         height: 17px
         background-image: url(../img/real3d-white-s.png)
+    &--real3dBlack
+      &:before
+        width: 162px
+        height: 18px
+        background-image: url(../img/real3d-black-s.png)
+    &--plane
+      &:before
+        width: 27px
+        height: 27px
+    &--cinema
+      &:before
+        width: 22px
+        height: 25px
 +r(1000)
   .ic
     &--marvel
@@ -88,6 +120,73 @@
         width: 235px
         height: 27px
         background-image: url(../img/real3d-white.png)
+    &--real3dBlack
+      &:before
+        width: 232px
+        height: 26px
+        background-image: url(../img/real3d-black.png)
+    &--plane
+      &:before
+        width: 39px
+        height: 39px
+        background-image: url(../img/icons/navigation.png)
+    &--cinema
+      &:before
+        width: 32px
+        height: 36px
+        background-image: url(../img/icons/film-roll.png)
++cm('heading')
+.sub-heading
+  margin: 0
+  color: $text-default-color
+  text-transform: uppercase
+  font: 300 40px/42px $main-font
++rx(767)
+  .sub-heading
+    font: 300 20px/22px $main-font
++r(768)
+  .sub-heading
++r(1000)
+  .sub-heading
+    font-size: 59px
+    line-height: 61px
++cm('buttons')
+.btn
+  min-width: 251px
+  padding: 11px 15px
+  letter-spacing: 1.33px
+  &--default
+    background-color: $btn-default-bg
+    background-image: $btn-default-bgi
+    border: 1px solid $btn-default-border
+    border-radius: 4px
+    box-shadow: $btn-default-box-shadow
+    color: $btn-default-color
+    font: 700 16px/28px $main-font
+    text-transform: uppercase
+  &--orange
+    border-radius: 28px
+    background-color: $btn-orange-bg
+    box-shadow: $btn-orange-box-shadow
+    font: 700 20px/32px $main-font
+    color: $btn-orange-color
+    text-transform: uppercase
+  &__icon
+    padding: 0 7px
+    float: left
++r(768)
+  .btn
+    &__icon
+      padding: 0
++r(1000)
+  .btn
+    &--default
+      padding: 28px 37px 14px
+      font: 700 23px/25px $main-font
+      letter-spacing: 1.6px
+    &--orange
+      font: 700 28px/57px $main-font
+      border-radius: 42px
 +cm('modal')
 .modal
   -webkit-overflow-scrolling: touch
@@ -95,8 +194,35 @@
 
 +comment('home page style')
 .body
+  position: relative
+  background: url(../img/footer-bg-s.png) no-repeat scroll 50% 100%
   background-color: $body-bg
-
+  &:before
+    content: ''
+    position: absolute
+    display: block
+    margin: auto
+    left: 0
+    right: 0
+    bottom: 0
++rx(767)
+  .body
+    padding-bottom: 302px
+    &:before
+      width: 180px
+      height: 250px
+      background: transparent url(../img/footer-icon-m.png) no-repeat scroll 0 0
++r(768)
+  .body
+    padding-bottom: 634px
+    &:before
+      width: 416px
+      height: 544px
+      background: transparent url(../img/footer-icon.png) no-repeat scroll 0 0
++r(1000)
+  .body
+    background: url(../img/footer-bg.png) no-repeat scroll 50% 100%
+    background-color: $body-bg
 +comment('section nav style')
 .navbar
   margin: 0
@@ -203,7 +329,7 @@
   color: $age-color
 +rx(767)
   .header
-    padding: 61px 0 36px
+    padding: 61px 0 29px
     &__icon
       background-image: url(../img/header-m.png)
       &:before
@@ -220,7 +346,7 @@
         font: 900 14px/14px $main-font
       &--prize    
         padding-left: 9px
-        font: 900 22px/24px $main-font
+        font: 900 25px/33px $main-font
   .age
     padding: 7px 0
     width: 22px
@@ -231,7 +357,7 @@
     font: 300 7px/9px $main-font
 +r(768)
   .header
-    padding: 109px 38px 50px
+    padding: 109px 38px 40px
     &__icon
       background-image: url(../img/header-s.png)
       &:before
@@ -243,22 +369,25 @@
       line-height: 50px
       &--date
         font: 700 39px/51px $main-font
+        letter-spacing: 1.5px
       &--format
-        font: 700 24px/50px $main-font
+        font: 700 24px/43px $main-font
+        letter-spacing: 2.3px
       &--prize   
-        font: 900 43px/69px $main-font
+        padding-left: 49px
+        font: 900 43px/65px $main-font
         letter-spacing: 1px
   .age
     padding: 12px 0
     width: 39px
     height: 39px
-    top: -11px
-    right: -46px
+    top: -10px
+    right: -15px
     box-shadow: 0 0 0 2px $age-shadow-color 
     font: 300 14px/18px $main-font
 +r(1000)
   .header
-    padding: 127px 90px 94px
+    padding: 127px 90px 62px
     &__icon
       background-image: url(../img/header.png)
       &:before
@@ -275,22 +404,123 @@
         font-size: 40px
         line-height: 70px
       &--prize   
+        padding-left: 77px
         font-size: 64px
         line-height: 107px
+        letter-spacing: 3px
   .age
     width: 62px
     height: 62px
     top: -16px
-    right: -108px
+    right: -43px
     box-shadow: 0 0 0 3px $age-shadow-color
     font: 300 23px/42px $main-font
     text-transform: uppercase
 
 +comment('section action style')
 .action
-
+  overflow: hidden
+  text-align: center
+  &__container
+    position: relative
+    background-color: $action-bg
+  &__heading
+    margin: 0
+    letter-spacing: 1.4px
+  &__text
+    color: $text-default-color
+    letter-spacing: 1.1px
+    &--format
+      padding: 10px 0
+      color: $action-text
+      text-transform: uppercase
+    &--stock
+      padding: 10px 0
+  &__btn
+    margin: 14px
+.copyright
+  position: absolute
+  width: 100%
+  top: 0
+  left: 15px
+  right: -100%
+  transform: rotate(-90deg)
+  transform-origin: right top 0
+  writing-mode: tb-rl
++rx(767)
+  .action
+    margin-bottom: 38px
+    &__container
+      padding: 32px 0 0
+    &__heading
+      padding-bottom: 26px
+    &__text
+      &--format
+        font: 700 23px/25px $main-font
+      &--stock
+        font: 400 24px/26px $main-font
+    &__btn-group
+      padding: 15px 0 0
+    &__btn
+      &--orange
+        margin: 0
++r(768)
+  .action
+    margin-bottom: 20px
+    &__container
+      padding: 56px 15px 0
+    &__heading
+      padding-bottom: 33px
+    &__text
+      &--format
+        font: 700 37px/45px $main-font
+      &--stock
+        font: 400 33px/36px $main-font
+    &__btn-group
+      padding: 10px 0
+    &__btn
+      &--orange
+        margin-top: 0
++r(1000)
+  .action
+    margin-bottom: 28px
+    &__container
+      padding: 71px 15px 0
+    &__heading
+      padding-bottom: 44px
+    &__text
+      &--format
+        padding: 32px 0
+        font-size: 39px
+        line-height: 41px
+        letter-spacing: 4px
+      &--stock
+        font-size: 44px
+        line-height: 46px
+    &__btn
+      margin: 24px 12px
+      min-width: 360px
+      &--orange
+        margin: 3px
 +comment('section video style')
 .video
+  margin: 0 -15px
+  &__img
+    margin: 0 auto
++rx(767)
+  .video
+    &__heading
+      padding: 33px 0 38px
++r(768)
+  .video
+    &__heading
+      padding: 35px 0 64px
+      font: 300 27px/29px $main-font
++r(1000)
+  .video
+    &__heading
+      padding: 61px 0 38px
+      font: 300 40px/42px $main-font
 
 +comment('section product style')
 .product
