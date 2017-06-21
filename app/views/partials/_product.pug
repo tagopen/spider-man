@@ -1,0 +1,25 @@
+mixin sliderItem(product)
+  .slider__item
+    .slider__photo
+      img.img-responsive.slider__img(src = hostname + 'img/' + product.img.src, alt = product.img.alt)
+    .slider__descr!= product.descr
+
+section.product
+  .container.product__container
+    .row
+      .col.xs-12
+        h2.sub-heading.product__heading!= content.index.product.heading
+    .row
+      .slider
+        each product, count in content.index.product.items
+          if (count % 2 == 0)
+            .col-xs-12.col-sm-5.col-sm-offset-1.col-lg-6.col-lg-offset-0
+              +sliderItem(product)
+          else
+            .col-xs-12.col-sm-5.col-lg-6
+              +sliderItem(product)
+    .row
+      .company
+        each image, count in content.index.product.company.img
+          .company__item
+            img.img-responsive.company__img(src=hostname + 'img/logo/' + image.src, alt=image.alt)

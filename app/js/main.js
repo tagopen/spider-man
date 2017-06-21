@@ -96,23 +96,42 @@
   });*/
 
   // Equal height
-  /*$(function() {
-    $('.item').matchHeight({
+  $(function() {
+    $('.slider__img').matchHeight({
       byRow: true,
       property: 'height',
       target: null,
-      remove: false
+      remove: false,
     });
-  });*/
-
-  /*
+    $('.slider__descr').matchHeight({
+      byRow: true,
+      property: 'height',
+      target: null,
+      remove: false,
+    });
+    $('.company__item').matchHeight({
+      byRow: true,
+      property: 'height',
+      target: null,
+      remove: false,
+    });
+  });
+  
   if ($('.slider').length) { 
     $('.slider').slick({
       dots: true,
+      arrows: false,
       infinite: true,
-      speed: 300,
       slidesToShow: 1,
-      adaptiveHeight: true
+      speed: 500,
+      mobileFirst: true,
+      swipeToSlide: '15',
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: "unslick",
+        }
+      ]
     });
-  }*/
+  }
 })(jQuery); // End of use strict
