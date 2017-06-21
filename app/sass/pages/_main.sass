@@ -534,7 +534,7 @@
   margin-bottom: 17px
   &__container
     padding:
-      top: 39px
+      top: 38px
       bottom: 17px
     background-color: $product-bg
   &__heading
@@ -549,6 +549,7 @@
     bottom: 0
   &__img
     margin: 0 auto
+    max-height: 200px
   &__descr
     padding: 5px 0
     color: $slider-descr-color
@@ -557,11 +558,11 @@
     text-align: center
 .company
   display: table
+  padding: 36px 20px 0px
   text-align: center
   &__item
     display: table-cell
     vertical-align: middle
-    width: 1%
   &__img
     margin: 0 auto
 +rx(767)
@@ -569,21 +570,20 @@
     padding:
       top: 14px
       bottom: 17px
-    &__container
-      padding-top: 47px
-  .slider
-    &__img
-      max-height: 200px
-  .company
-    padding: 62px 20px 25px
-    &__item
-      padding: 0 11px
 +r(768)
   .product
     &__heading
       padding-bottom: 30px
   .slider
     &__photo
+      padding-top: 30px
+    &__descr
+      padding-top: 27px
+  .company
+    &__item
+      width: 1%
++r(1000)
+  .product
       padding-top: 30px
     &__descr
       padding-top: 27px
