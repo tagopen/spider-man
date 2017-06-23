@@ -69,7 +69,10 @@ gulp.task('scripts', ['bower'], () => {
      'bower_components/fancybox/dist/jquery.fancybox.js',
      'bower_components/slick-carousel/slick/slick.js',
      'bower_components/bootstrap/dist/js/bootstrap.js',
-     'bower_components/matchHeight/dist/jquery.matchHeight.js'
+     'bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
+     'bower_components/matchHeight/dist/jquery.matchHeight.js',
+     'bower_components/jquery.maskedinput/dist/jquery.maskedinput.js',
+     'bower_components/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
    ])
  .pipe($.plumber())
  .pipe(gulp.dest(path.src.js));

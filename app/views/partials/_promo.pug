@@ -1,0 +1,121 @@
+mixin testCols(count)
+  case (count % 4)
+    when 0
+      .col-xs-12.col-sm-6.col-lg-3
+        if (block)
+          block
+    when 1
+      .col-xs-12.col-sm-6.col-lg-2
+        if (block)
+          block
+    when 2
+      .col-xs-12.col-sm-6.col-lg-3
+        if (block)
+          block
+    when 3
+      .col-xs-12.col-sm-6.col-lg-4
+        if (block)
+          block
+mixin personalCols(count)
+  case (count % 3)
+    when 0
+      .col-xs-12.col-sm-4.col-lg-6
+        if (block)
+          block
+    when 1
+      .col-xs-7.col-sm-4.col-lg-4
+        if (block)
+          block
+    when 2
+      .col-xs-5.col-sm-4.col-lg-2
+        if (block)
+          block
+section.registration
+  .container.registration__container
+    form(action='', method='POST')
+      .row
+        .col-xs-12
+          h2.sub-heading!= content.index.registration.heading
+      .row
+        .col-xs-12.col-sm-10.col-sm-offset-1
+          .promo.registration__item
+            .row
+              each promo, count in content.index.registration.promo
+                .col-xs-12.col-sm-4
+                  .promo__item
+                    .form.promo__group
+                      .form__heading!= promo.heading
+                      .form__group
+                        input.form__control.form__control--mask(data-mask=promo.mask, placeholder=promo.placeholder, name='', tabindex='-1', type='text')
+                      .form__descr.example!= promo.text
+                        span.example__key!= promo.key
+      .row
+        .col-xs-12.col-sm-10.col-sm-offset-1
+          .personal.registration__item
+            .row
+              each personal, count in content.index.registration.personal  
+                +personalCols(count)
+                  case (count % 3)
+                    when 0
+                      .form.personal__group
+                        .form__heading!= personal.heading
+                        .form__group
+                          input.form__control(type='text', name='', tabindex='-1')
+                    when 1
+                      .form.personal__group
+                        .form__heading!= personal.heading
+                        .form__group.input-group.form__group--date(data-provide='datepicker', data-date-format='mm/dd/yyyy')
+                          i.ic.form__icon(class=personal.icon)
+                          input.form__control.form__control--input-group(type='text', name='', tabindex='-1', placeholder=personal.text)
+                    when 2
+                      .form.personal__group
+                        .form__heading!= personal.heading
+                        .form__group.input-group.input-group--select
+                          select.select.form__control.form__control--input-group
+                            if (personal.items)
+                              each item in personal.items
+                                option.select__option(value=item)!= item
+      .row
+        .col-xs-12.col-sm-10.col-sm-offset-1
+            .test.registration__item
+              .row
+                each test, countTest in content.index.registration.test
+                  +testCols(countTest)
+                    .test__items
+                      .form
+                        .form__heading.form__heading--text-left!= test.heading
+                        if (test.subHeading)
+                          .form__sub-heading!= test.subHeading
+                        if (test.items)
+                          if (test.items.radio)
+                            fieldset(id='radio' + countTest)
+                              each item, count in test.items.radio
+                                .form__group
+                                  label.form__label
+                                    input.form__radio(type='radio', name='radio' + countTest)
+                                    != item
+                          else if (test.items.checkbox)
+                            .row
+                              each checkbox in test.items.checkbox
+                                .col-xs-6
+                                  each item, count in checkbox
+                                    .form__group
+                                      input.form__checkbox(type='checkbox', name='checkbox', id='checkbox--' + count)
+                                      label.form__label(for='checkbox--' + count)!= item
+                        if (test.films)
+                          .form__heading.form__heading--film!= test.films.heading
+                          if (test.films.items)
+                            .form__group.input-group.input-group--select
+                              select.multiselect.form__control.form__control--input-group(multiple='multiple')
+                                each item in test.films.items
+                                  option(value=item)!= item
+      .row
+        .col-xs-12.col-sm-10.col-sm-offset-1
+          .registration__item
+            .registration__btn-group
+              a.btn.btn--orange.registration__btn!= content.index.registration.btns.logup
+            .registration__btn-group
+              a.registration__rule!= content.index.registration.btns.rule
+
+
+

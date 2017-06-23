@@ -1,5 +1,9 @@
 +comment('general style')
-
+input[type=radio], input[type=checkbox], select
+  &:hover
+    cursor: pointer
+  &:focus
+    outline: none
 +cm('form')
 .text-danger
   color: $text-danger
@@ -28,6 +32,11 @@
   &--cinema
     &:before
       background-image: url(../img/icons/film-roll.png)
+  &--date
+    &:before
+      width: 21px
+      height: 20px
+      background-image: url(../img/icons/calendar.png)
 +rx(767)
   .ic
     &--marvel
@@ -161,6 +170,10 @@
   min-width: 251px
   padding: 11px 15px
   letter-spacing: 1.33px
+  transition: all .3s ease-out
+  &:hover,
+  &:focus
+    outline: none
   &--default
     background-color: $btn-default-bg
     background-image: $btn-default-bgi
@@ -177,6 +190,10 @@
     font: 700 20px/32px $main-font
     color: $btn-orange-color
     text-transform: uppercase
+    &:hover,
+    &:focus
+      background-color: $btn-orange-bg-hover
+      color: $btn-orange-color
   &__icon
     padding: 0 7px
     float: left
@@ -191,6 +208,8 @@
       font: 700 23px/25px $main-font
       letter-spacing: 1.6px
     &--orange
+      padding-left: 35px
+      padding-right: 35px
       font: 700 28px/57px $main-font
       border-radius: 42px
 +cm('modal')
@@ -531,17 +550,20 @@
 
 +comment('section product style')
 .product
-  margin-bottom: 17px
+  margin-bottom: 18px
   &__container
     padding:
       top: 38px
-      bottom: 17px
+      bottom: 19px
     background-color: $product-bg
   &__heading
     padding-bottom: 22px
 +cm('product carousel')
 .slider
   position: relative
+  &__col
+    &:focus
+    outline: none
   &__indicators
     position: absolute
     left: 0
@@ -559,6 +581,7 @@
 .company
   display: table
   padding: 36px 20px 0px
+  width: 100%
   text-align: center
   &__item
     display: table-cell
@@ -567,9 +590,13 @@
     margin: 0 auto
 +rx(767)
   .product
-    padding:
-      top: 14px
-      bottom: 17px
+    padding: 14px 0 0
+    &__container
+      padding-top: 45px
+  .company
+    padding: 56px 20px 18px
+    &__item
+      padding: 5px
 +r(768)
   .product
     &__heading
@@ -579,31 +606,146 @@
       padding-top: 30px
     &__descr
       padding-top: 27px
-  .company
-    &__item
-      width: 1%
+    .company
+      &__item
+        width: 1% 
 +r(1000)
   .product
-      padding-top: 30px
+    padding-top: 30px
     &__descr
       padding-top: 27px
-  .company
-    &__img
-      padding: 20px
-+r(1000)
   .slider
     &__descr
       font-size: 28px
       line-height: 31px
   .company
-   padding: 51px 0
-
-+comment('section promo style')
+    padding: 51px 0
+    &__img
+      padding: 20px
++comment('section registration style')
+.registration
+  &__container
+    background-color: $registration-bg
+    padding: 
+      top: 66px
+      bottom: 
+  &__item
+    padding: 24px 0
+    border-bottom: 1px dashed $registration-border
+  &__btn-group
+    text-align: center
+  &__rule
+    display: inline-block
+    padding: 20px 0
+    opacity: .41
+    color: $registration-rule-color
+    font: 700 13px/15px $main-font
+    text-decoration: underline
+    text-transform: uppercase
+.form
+  &__group
+    position: relative
+  &__heading
+    color: $text-default-color
+  &__sub-heading
+    color: $form-sub-heading-color
+    font: 300 14px/17px $main-font
+  &__group
+    margin: 10px 0
+    font: 300 17px/19px $main-font
+  &__control
+    padding: 10px
+    background-color: $form-input-bg
+    border-radius: 4px
+    box-shadow: 0 0 0 2px $form-input-border
+    border: none
+    color: $form-input-color
+    letter-spacing: 1.2px
+    text-transform: uppercase
+    &--input-group
+      width: 100%
+      padding-left: 15px
+      padding-right: 40px
+      background-image: $form-input-bgi
+      color: $text-default-color
+  &__descr
+    opacity: .87
+  &__icon
+    position: absolute
+    right: 10px
+    top: 50%
+    transform: translateY(-50%)
+  &__label
+    color: $text-default-color
 .promo
+  &__item
+    padding: 10px 0
+.example
+  &__key
+    color: $example-color
+    text-decoration: underline
+.input-group
+  position: relative
+  width: 100%
+  &--select
+    &:before 
+      content: ''
+      position: absolute
+      display: block    
+      width: 0
+      height: 0
+      top: 50%
+      right: 15px
+      transform: translateY(-50%)
+      border: 0 solid transparent
+      border-left-width: 5px
+      border-right-width: 5px
+      border-top: 6px solid $select-bg
+      pointer-events: none
+  &:after
+    content: ''
+    position: absolute
+    display: block
+    width: 1px
+    height: 80%
+    top: 10%
+    right: 38px
+    background-color: $select-group-border
+.select
+  appearance: none
++rx(767)
+  .form
+    &__heading
+      font: 600 16px/18px $main-font
+      text-align: center
+      &--test
+        padding-bottom: 15px
+        text-align: left
+      &--text-left
+        text-align: left
+      &--film
+        padding: 10px 0 
+        text-align: left
+    &__group
+      max-width: 340px
+      margin-left: auto
+      margin-right: auto
+    &__control
+      width: 100%
+      max-width: 340px
+      text-align: center
+    &__descr
+      font: 300 11px/13px $main-font
+      text-align: center
+    &__label
+      font: 400 16px/18px $main-font
++r(768)
+  .form
+    &__control
+      padding: 10px 25px
+      width: 100%
 
 +comment('section footer style')
 .footer
-
-
 
 

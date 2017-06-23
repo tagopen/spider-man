@@ -386,6 +386,14 @@
 /* ---------------------------------------- */
 /* G E N E R A L    S T Y L E               */
 /* ---------------------------------------- */
+input[type=radio]:hover, input[type=checkbox]:hover, select:hover {
+  cursor: pointer;
+}
+
+input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
+  outline: none;
+}
+
 /* form */
 .text-danger {
   color: #b94a48;
@@ -446,6 +454,12 @@
 
 .ic--cinema:before {
   background-image: url(../img/icons/film-roll.png);
+}
+
+.ic--date:before {
+  width: 21px;
+  height: 20px;
+  background-image: url(../img/icons/calendar.png);
 }
 
 @media only screen and (max-width: 767px) {
@@ -593,16 +607,17 @@
   outline: none;
 }
 
-/* slick slider */
-.slick-slide:focus {
-  outline: none;
-}
-
 /* buttons */
 .btn {
   min-width: 251px;
   padding: 11px 15px;
   letter-spacing: 1.33px;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.btn:hover, .btn:focus {
+  outline: none;
 }
 
 .btn--default {
@@ -631,6 +646,11 @@
   text-transform: uppercase;
 }
 
+.btn--orange:hover, .btn--orange:focus {
+  background-color: #ffd11d;
+  color: #fff;
+}
+
 .btn__icon {
   padding: 0 7px;
   float: left;
@@ -649,6 +669,8 @@
     letter-spacing: 1.6px;
   }
   .btn--orange {
+    padding-left: 35px;
+    padding-right: 35px;
     font: 700 28px/57px "PTSansProNarrow", sans-serif;
     -webkit-border-radius: 42px;
             border-radius: 42px;
@@ -1160,12 +1182,12 @@
 /* S E C T I O N    P R O D U C T    S T Y L E  */
 /* -------------------------------------------- */
 .product {
-  margin-bottom: 17px;
+  margin-bottom: 18px;
 }
 
 .product__container {
   padding-top: 38px;
-  padding-bottom: 17px;
+  padding-bottom: 19px;
   background-color: #fff;
 }
 
@@ -1176,6 +1198,10 @@
 /* product carousel */
 .slider {
   position: relative;
+}
+
+.slider__col {
+  outline: none;
 }
 
 .slider__indicators {
@@ -1201,6 +1227,7 @@
 .company {
   display: table;
   padding: 36px 20px 0px;
+  width: 100%;
   text-align: center;
 }
 
@@ -1215,8 +1242,16 @@
 
 @media only screen and (max-width: 767px) {
   .product {
-    padding-top: 14px;
-    padding-bottom: 17px;
+    padding: 14px 0 0;
+  }
+  .product__container {
+    padding-top: 45px;
+  }
+  .company {
+    padding: 56px 20px 18px;
+  }
+  .company__item {
+    padding: 5px;
   }
 }
 
@@ -1230,23 +1265,18 @@
   .slider__descr {
     padding-top: 27px;
   }
-  .company__item {
+  .slider .company__item {
     width: 1%;
   }
 }
 
-  .slider__photo {
+@media only screen and (min-width: 1000px) {
+  .product {
     padding-top: 30px;
   }
-  .slider__descr {
+  .product__descr {
     padding-top: 27px;
   }
-  .company__img {
-    padding: 20px;
-  }
-}
-
-@media only screen and (min-width: 1000px) {
   .slider__descr {
     font-size: 28px;
     line-height: 31px;
@@ -1254,11 +1284,187 @@
   .company {
     padding: 51px 0;
   }
+  .company__img {
+    padding: 20px;
+  }
 }
 
-/* ---------------------------------------- */
-/* S E C T I O N    P R O M O    S T Y L E  */
-/* ---------------------------------------- */
+/* ------------------------------------------------------ */
+/* S E C T I O N    R E G I S T R A T I O N    S T Y L E  */
+/* ------------------------------------------------------ */
+.registration__container {
+  background-color: #fff;
+  padding-top: 66px;
+}
+
+.registration__item {
+  padding: 24px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.registration__btn-group {
+  text-align: center;
+}
+
+.registration__rule {
+  display: inline-block;
+  padding: 20px 0;
+  opacity: .41;
+  color: #000;
+  font: 700 13px/15px "PTSansProNarrow", sans-serif;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.form__group {
+  position: relative;
+}
+
+.form__heading {
+  color: #0a0a0a;
+}
+
+.form__sub-heading {
+  color: #898989;
+  font: 300 14px/17px "PTSansProNarrow", sans-serif;
+}
+
+.form__group {
+  margin: 10px 0;
+  font: 300 17px/19px "PTSansProNarrow", sans-serif;
+}
+
+.form__control {
+  padding: 10px;
+  background-color: #f3f3f3;
+  -webkit-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: 0 0 0 2px #ebebeb;
+          box-shadow: 0 0 0 2px #ebebeb;
+  border: none;
+  color: #000;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.form__control--input-group {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 40px;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#eaeaea), to(#fcfcfc));
+  background-image: -webkit-linear-gradient(bottom, #eaeaea 0%, #fcfcfc 100%);
+  background-image: linear-gradient(to top, #eaeaea 0%, #fcfcfc 100%);
+  color: #0a0a0a;
+}
+
+.form__descr {
+  opacity: .87;
+}
+
+.form__icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.form__label {
+  color: #0a0a0a;
+}
+
+.promo__item {
+  padding: 10px 0;
+}
+
+.example__key {
+  color: #f18b00;
+  text-decoration: underline;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input-group--select:before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  top: 50%;
+  right: 15px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  border: 0 solid transparent;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  border-top: 6px solid #cdd4d8;
+  pointer-events: none;
+}
+
+.input-group:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 80%;
+  top: 10%;
+  right: 38px;
+  background-color: #ecf1f2;
+}
+
+.select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .form__heading {
+    font: 600 16px/18px "PTSansProNarrow", sans-serif;
+    text-align: center;
+  }
+  .form__heading--test {
+    padding-bottom: 15px;
+    text-align: left;
+  }
+  .form__heading--text-left {
+    text-align: left;
+  }
+  .form__heading--film {
+    padding: 10px 0;
+    text-align: left;
+  }
+  .form__group {
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .form__control {
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+  }
+  .form__descr {
+    font: 300 11px/13px "PTSansProNarrow", sans-serif;
+    text-align: center;
+  }
+  .form__label {
+    font: 400 16px/18px "PTSansProNarrow", sans-serif;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .form__control {
+    padding: 10px 25px;
+    width: 100%;
+  }
+}
+
 /* ------------------------------------------ */
 /* S E C T I O N    F O O T E R    S T Y L E  */
 /* ------------------------------------------ */

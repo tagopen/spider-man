@@ -94,6 +94,15 @@
       $('.navbar-toggle:visible').click();
     });
   });*/
+  // Masked Input
+  $(function($){
+    $(".form__control--mask").each(function() {
+      var $this = $(this),
+          maskPlaceholder = $this.attr('placeholder'),
+          mask = $this.data('mask');
+        $this.mask(mask, {placeholder: maskPlaceholder});
+    });
+  });
 
   // Equal height
   $(function() {
@@ -117,6 +126,7 @@
     });
   });
   
+  // Slick slider
   if ($('.slider').length) { 
     $('.slider').slick({
       dots: true,
@@ -134,4 +144,33 @@
       ]
     });
   }
+
+  // DatePicker
+  /*$(function () {
+    $('.form__group--date').datetimepicker({
+      locale: 'ru',
+      format: 'LT'
+    });
+  });*/
+
+  // Multiselect
+  $(function () {
+    $('.multiselect').multiselect({
+      includeSelectAllOption: true,
+      buttonClass:      'multiselect form__control form__control--input-group',
+      nonSelectedText:  'Не выбрано',
+      allSelectedText:  'Всё выбрано',
+      selectAllText:    'Выбрать все!',
+      numberDisplayed:  1,
+      buttonWidth:      '100%',
+      nSelectedText:    ' выбрано'
+    });
+  });
+
+  // Buy ticket
+  $(function() {
+    $('.action__btn--orange').prop("disabled", true);
+  });
+  
+ 
 })(jQuery); // End of use strict

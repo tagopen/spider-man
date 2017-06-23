@@ -22,6 +22,8 @@
     "bootstrap": "^3.3.7",
     "bootstrap-carousel-swipe": "*",
     "matchHeight": "matchheight#^0.7.2",
-    "fancybox": "^3.0.47"
+    "fancybox": "^3.0.47",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "bootstrap-multiselect": "^0.9.13"
   }
 }

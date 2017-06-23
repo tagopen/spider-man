@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <!-- Font-Awesome CSS-->
     <link rel="stylesheet" href="css/font-awesome.css">
+    <!-- Multy Select-->
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- endbuild-->
@@ -74,18 +76,22 @@
       </header>
       <section class="action">
         <div class="container action__container">
-          <h2 class="sub-heading action__heading">Купите <b>2 билета</b> на фильм</h2>
-          <div class="action__text"><i class="ic ic--spidermanBlack"></i></div>
-          <div class="action__text action__text--format">в формате <i class="ic ic--real3dBlack"></i>
+          <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+              <h2 class="sub-heading action__heading">Купите <b>2 билета</b> на фильм</h2>
+              <div class="action__text"><i class="ic ic--spidermanBlack"></i></div>
+              <div class="action__text action__text--format">в формате <i class="ic ic--real3dBlack"></i>
+              </div>
+              <div class="action__text action__text--stock">и участвуйте в акции:</div>
+              <div class="action__btn-group">
+                <button class="btn action__btn btn--default"><i class="ic btn__icon ic--plane"></i>Выберите город
+                </button>
+                <button class="btn action__btn btn--default"><i class="ic btn__icon ic--cinema"></i>Выберите кинотеатр
+                </button>
+              </div>
+              <div class="action__btn-group"><a class="btn btn--orange action__btn action__btn--orange">Купить билет</a></div>
+            </div>
           </div>
-          <div class="action__text action__text--stock">и участвуйте в акции:</div>
-          <div class="action__btn-group">
-            <button class="btn action__btn btn--default"><i class="ic btn__icon ic--plane"></i>Выберите город
-            </button>
-            <button class="btn action__btn btn--default"><i class="ic btn__icon ic--cinema"></i>Выберите кинотеатр
-            </button>
-          </div>
-          <div class="action__btn-group"><a class="btn btn--orange action__btn action__btn--orange">Купить билет</a></div>
           <section class="video" data-youtube="8z9kooDFTSE">
             <h2 class="sub-heading video__heading">Подробнее об акции</h2><a class="video__play" id="video__play" href="#"><img class="img-responsive video__img" src="img/video.jpg" alt="Трейлер"></a>
           </section>
@@ -100,40 +106,286 @@
             </div>
           </div>
           <div class="row">
-            <div class="slider">
-              <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-lg-6 col-lg-offset-0">
-                      <div class="slider__item">
-                        <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-1.png" alt="Super Heroes"></div>
-                        <div class="slider__descr">Наборы LEGO &reg; Marvel&trade; Super Heroes</div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+              <div class="slider">
+                      <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-lg-6 col-lg-offset-0 slider__col">
+                        <div class="slider__item">
+                          <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-1.png" alt="Super Heroes"></div>
+                          <div class="slider__descr">Наборы LEGO &reg; Marvel&trade; Super Heroes</div>
+                        </div>
                       </div>
-              </div>
-              <div class="col-xs-12 col-sm-5 col-lg-6">
-                      <div class="slider__item">
-                        <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-2.png" alt="Sony PlayStation 4 Slim"></div>
-                        <div class="slider__descr">Sony PlayStation 4 Slim</div>
+                      <div class="col-xs-12 col-sm-5 col-lg-6 slider__col">
+                        <div class="slider__item">
+                          <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-2.png" alt="Sony PlayStation 4 Slim"></div>
+                          <div class="slider__descr">Sony PlayStation 4 Slim</div>
+                        </div>
                       </div>
-              </div>
-              <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-lg-6 col-lg-offset-0">
-                      <div class="slider__item">
-                        <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-3.png" alt="Фигурка «Человек-паук» Hasbro"></div>
-                        <div class="slider__descr">Фигурка «Человек-паук» Hasbro</div>
+                      <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-lg-6 col-lg-offset-0 slider__col">
+                        <div class="slider__item">
+                          <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-3.png" alt="Фигурка «Человек-паук» Hasbro"></div>
+                          <div class="slider__descr">Фигурка «Человек-паук» Hasbro</div>
+                        </div>
                       </div>
-              </div>
-              <div class="col-xs-12 col-sm-5 col-lg-6">
-                      <div class="slider__item">
-                        <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-4.png" alt="Интерактивная маска Человек-паук Hasbro"></div>
-                        <div class="slider__descr">Интерактивная маска Человек-паук Hasbro</div>
+                      <div class="col-xs-12 col-sm-5 col-lg-6 slider__col">
+                        <div class="slider__item">
+                          <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-4.png" alt="Интерактивная маска Человек-паук Hasbro"></div>
+                          <div class="slider__descr">Интерактивная маска Человек-паук Hasbro</div>
+                        </div>
                       </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="company">
-              <div class="company__item"><img class="img-responsive company__img" src="img/logo/lego.png" alt="lego"></div>
-              <div class="company__item"><img class="img-responsive company__img" src="img/logo/hasbro.png" alt="hasbro"></div>
-              <div class="company__item"><img class="img-responsive company__img" src="img/logo/playstation.png" alt="playstation"></div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+              <div class="company">
+                <div class="company__item"><img class="img-responsive company__img" src="img/logo/lego.png" alt="lego"></div>
+                <div class="company__item"><img class="img-responsive company__img" src="img/logo/hasbro.png" alt="hasbro"></div>
+                <div class="company__item"><img class="img-responsive company__img" src="img/logo/playstation.png" alt="playstation"></div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section class="registration">
+        <div class="container registration__container">
+          <form action="" method="POST">
+            <div class="row">
+              <div class="col-xs-12">
+                <h2 class="sub-heading">Зарегистрируйте <b>ваш код:</b></h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div class="promo registration__item">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                      <div class="promo__item">
+                        <div class="form promo__group">
+                          <div class="form__heading">Номер промо-кода: </div>
+                          <div class="form__group">
+                            <input class="form__control form__control--mask" data-mask="aaa-999-aa" placeholder="ХХХ-ХХХ-ХХ" name="" tabindex="-1" type="text">
+                          </div>
+                          <div class="form__descr example">Например, <span class="example__key">KLX-002-SD</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                      <div class="promo__item">
+                        <div class="form promo__group">
+                          <div class="form__heading">Номер первого билета: </div>
+                          <div class="form__group">
+                            <input class="form__control form__control--mask" data-mask="№ 999-999-999" placeholder="№ ХХХ-ХХХ-ХХХ" name="" tabindex="-1" type="text">
+                          </div>
+                          <div class="form__descr example">Например,<span class="example__key">112-332-456</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                      <div class="promo__item">
+                        <div class="form promo__group">
+                          <div class="form__heading">Номер второго билета: </div>
+                          <div class="form__group">
+                            <input class="form__control form__control--mask" data-mask="№ 999-999-999" placeholder="№ ХХХ-ХХХ-ХХХ" name="" tabindex="-1" type="text">
+                          </div>
+                          <div class="form__descr example">Например,<span class="example__key">112-332-456</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div class="personal registration__item">
+                  <div class="row">
+                          <div class="col-xs-12 col-sm-4 col-lg-6">
+                            <div class="form personal__group">
+                              <div class="form__heading">E-mail для связи</div>
+                              <div class="form__group">
+                                <input class="form__control" type="text" name="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-7 col-sm-4 col-lg-4">
+                            <div class="form personal__group">
+                              <div class="form__heading">Ваша дата рождения:</div>
+                              <div class="form__group input-group form__group--date" data-provide="datepicker" data-date-format="mm/dd/yyyy"><i class="ic form__icon ic--date"></i>
+                                <input class="form__control form__control--input-group" type="text" name="" tabindex="-1" placeholder="02/12/1992 г.">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-5 col-sm-4 col-lg-2">
+                            <div class="form personal__group">
+                              <div class="form__heading">Ваш пол:</div>
+                              <div class="form__group input-group input-group--select">
+                                <select class="select form__control form__control--input-group">
+                                  <option class="select__option" value="МУЖ">МУЖ</option>
+                                  <option class="select__option" value="ЖЕН">ЖЕН</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div class="test registration__item">
+                  <div class="row">
+                          <div class="col-xs-12 col-sm-6 col-lg-3">
+                            <div class="test__items">
+                              <div class="form">
+                                <div class="form__heading form__heading--text-left">Сколько раз в месяц вы ходите в кино: </div>
+                                <fieldset id="radio0">
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio0">не хожу каждый месяц
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio0">один раз
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio0">два раза
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio0">три раза
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio0">больше трех
+                                    </label>
+                                  </div>
+                                </fieldset>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-12 col-sm-6 col-lg-2">
+                            <div class="test__items">
+                              <div class="form">
+                                <div class="form__heading form__heading--text-left">Как часто вы ходите в кино на формат 3D:</div>
+                                <fieldset id="radio1">
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio1">1 пункт
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio1">2 пункт
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio1">3 пункт
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio1">4 пункт
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label">
+                                      <input class="form__radio" type="radio" name="radio1">5 пункт
+                                    </label>
+                                  </div>
+                                </fieldset>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-12 col-sm-6 col-lg-3">
+                            <div class="test__items">
+                              <div class="form">
+                                <div class="form__heading form__heading--text-left">Какие последние фильмы вы смотрели в 3D:</div>
+                                <div class="form__sub-heading">(отметьте несколько, если смотрели больше одного фильма из списка)</div>
+                                <div class="form__heading form__heading--film">Фильмы:</div>
+                                <div class="form__group input-group input-group--select">
+                                  <select class="multiselect form__control form__control--input-group" multiple="multiple">
+                                    <option value="Фильм 1">Фильм 1</option>
+                                    <option value="Фильм 2">Фильм 2</option>
+                                    <option value="Фильм 3">Фильм 3</option>
+                                    <option value="Фильм 4">Фильм 4</option>
+                                    <option value="Фильм 5">Фильм 5</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-12 col-sm-6 col-lg-4">
+                            <div class="test__items">
+                              <div class="form">
+                                <div class="form__heading form__heading--text-left">Есть ли у вас карта лояльности какой-нибудь киносети:</div>
+                                <div class="row">
+                                  <div class="col-xs-6">
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--0">
+                                      <label class="form__label" for="checkbox--0">Синема Парк</label>
+                                    </div>
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--1">
+                                      <label class="form__label" for="checkbox--1">Формула кино</label>
+                                    </div>
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--2">
+                                      <label class="form__label" for="checkbox--2">Каро</label>
+                                    </div>
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--3">
+                                      <label class="form__label" for="checkbox--3">Киномакс</label>
+                                    </div>
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--4">
+                                      <label class="form__label" for="checkbox--4">Премьер-зал</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--0">
+                                      <label class="form__label" for="checkbox--0">Люксор  </label>
+                                    </div>
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--1">
+                                      <label class="form__label" for="checkbox--1">Мираж Синема</label>
+                                    </div>
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--2">
+                                      <label class="form__label" for="checkbox--2">Синема Стар</label>
+                                    </div>
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--3">
+                                      <label class="form__label" for="checkbox--3">Монитор</label>
+                                    </div>
+                                    <div class="form__group">
+                                      <input class="form__checkbox" type="checkbox" name="checkbox" id="checkbox--4">
+                                      <label class="form__label" for="checkbox--4">Пять звезд</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div class="registration__item">
+                  <div class="registration__btn-group"><a class="btn btn--orange registration__btn">Зарегистрировать</a></div>
+                  <div class="registration__btn-group"><a class="registration__rule">Правила акции</a></div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </section>
     </div>
@@ -145,6 +397,11 @@
     <script src="js/bootstrap.js"></script>
     <!-- Old browsers reject JavaScript-->
     <script src="js/jquery.reject.js"></script>
+    <!-- Bootstrap Date TimePicker-->
+    <!-- Masked Input-->
+    <script src="js/jquery.maskedinput.js"></script>
+    <!-- Multy Select-->
+    <script src="js/bootstrap-multiselect.js"></script>
     <!-- Match Height JavaScript-->
     <script src="js/jquery.matchHeight.js"></script>
     <!-- Slick-Slider JavaScript-->
