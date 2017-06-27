@@ -2,103 +2,102 @@
   if (is_file('lib/class.phpmailer.php')) {
     require_once("lib/class.phpmailer.php");
   }
-
   if (is_file('lib/class.smtp.php')) {
     require_once("lib/class.smtp.php");
   }
 
   $http_host = $_SERVER['HTTP_HOST'];
-
+  $body = '';
   if ( substr($http_host, 0, 4)=='www.') {
     $host_name = substr($http_host, 4);
   } else {
     $host_name = $http_host;
   }
-
+  if (isset($_SERVER['HTTP_REFERER'])) {
+    $http_referer = $_SERVER['HTTP_REFERER'];
+  } else {
+    $http_referer = '';
+  }
   define ('HTTP_SERVER', 'http://' . $http_host . '/');
   define ('HOST_NAME', $host_name);
-
+  define ('HTTP_REFERER', $http_referer);
   $post = array( 
     'host_name'     => HOST_NAME,
     'host_dir'      => HTTP_SERVER,
+    'host_referer'  => HTTP_REFERER
     );
-
-  if (!empty($_POST["user_form"])) {
-    $post['user_form'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+  if (!empty($_POST["form"])) {
+    foreach( $_POST["form"] as $key => $value) { 
+      $post['user_form'] = $key;
+      $body .= 'Форма: ' . $post['user_form'] . chr(10) . chr(13);
+    }
   }
-
   if (!empty($_POST["email"])) {
     $post['user_email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $body .= 'Почта: ' . $post['user_email'] . chr(10) . chr(13);
   }
 
-  if (!empty($_POST["name"])) {
-    $post['user_name'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+  if (!empty($_POST["date"])) {
+    $post['user_date'] = filter_input(INPUT_POST,'date', FILTER_SANITIZE_STRING);
+    $body .= 'Дата рождения: ' . $post['user_date'] . chr(10) . chr(13);
   }
 
-  if (!empty($_POST["phone"])) {
-    $post['user_phone'] = filter_input(INPUT_POST,'phone', FILTER_SANITIZE_STRING);
+  if (!empty($_POST["gender"])) {
+    $post['user_gender'] = filter_input(INPUT_POST,'gender', FILTER_SANITIZE_STRING);
+    $body .= 'Пол: ' . $post['user_gender'] . chr(10) . chr(13);
   }
 
-  if (!empty($_POST["message"])) {
-    $post['user_message'] = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+  if (!empty($_POST["cinema"])) {
+    $post['user_cinema'] = filter_input(INPUT_POST, 'cinema', FILTER_SANITIZE_STRING);
+    $body .= 'Кинотеатр: ' . $post['user_cinema'] . chr(10) . chr(13);
   }
 
-  // Insert form data into html
-  $patterns = array();
-  $replacements = array();
-  foreach ($post as $key => $value) {
-    $patterns[] = '/\{%' . $key .  '\%}/i'; // varible => {$varible}
-    $replacements[] = $value;
+  if (!empty($_POST["online"])) {
+    $post['user_online'] = filter_input(INPUT_POST, 'online', FILTER_SANITIZE_STRING);
+    $body .= 'Покупка: ' . $post['user_online'] . chr(10) . chr(13);
   }
 
-  // html template
-  $body = '';
-  if (is_file('html_template.html')) {
-    $html_template = file_get_contents('html_template.html');
-    $body = preg_replace($patterns, $replacements, $html_template);  
-    $body = preg_replace('/\{%(.+)%\}/', '', $body); // remove all beetween "{% %}"
+  if (!empty($_POST["promocode"])) {
+    $post['user_promocode'] = filter_input(INPUT_POST, 'promocode', FILTER_SANITIZE_STRING);
+    $body .= 'Промо-код: ' . $post['user_promocode'] . chr(10) . chr(13);
   }
 
-  // If mailer not supported html
-  $altBody = '';
-  if (is_file('no_html.html')) {
-    $no_html_template = file_get_contents('no_html.html');
-    $altBody = preg_replace($patterns, $replacements, $no_html_template);
-    $altBody = preg_replace('/\{%(.+)%\}/', '', $altBody); // remove all beetween "{% %}"
+  if (!empty($_POST["ticket1"])) {
+    $post['user_ticket1'] = filter_input(INPUT_POST, 'ticket1', FILTER_SANITIZE_STRING);
+    $body .= 'Билет №1: ' . $post['user_ticket1'] . chr(10) . chr(13);
   }
+
+  if (!empty($_POST["ticket2"])) {
+    $post['user_ticket2'] = filter_input(INPUT_POST, 'ticket2', FILTER_SANITIZE_STRING);
+    $body .= 'Билет №2: ' . $post['user_ticket2'] . chr(10) . chr(13);
+  }
+
+  if (!empty($_POST["product_name"])) {
+    foreach( $_POST["product_name"] as $key => $value){ 
+      $post['product_name'] = $key;
+      $body .= 'Название товара: ' . $post['product_name'] . chr(10) . chr(13);
+    }
+  }
+
+  $body .= chr(10) . chr(13) . "С уважением," . chr(10) . chr(13) . "разработчики сайта " . $post['host_referer'];
+
   $mail = new PHPMailer();
-
   $mail->CharSet      = 'UTF-8';
-
-  //if mail is SMTP
-  /*
-  $mail->isSMTP();
-  $mail->Host         = 'smtp.server.com';
-  $mail->SMTPAuth     = true;
-  $mail->SMTPSecure   = 'ssl';
-  $mail->Port         = 465;
-  $mail->Username     = 'name@mail.com';
-  $mail->Password     = 'password';
-  */
-
   $mail->IsSendmail();
 
-  $from = 'no-reply@tagopen.com';
+  $from = 'no-repeat@tagopen.com';
   $to = "Artem2431@gmail.com";
   $mail->SetFrom($from, HOST_NAME);
-  $mail->AddAddress($to, 'Name Surname');
-
+  $mail->AddAddress($to);
   $mail->isHTML(false);
-
-  $mail->Subject      = "Новая заявка с сайта";
+  $mail->Subject      = "Новая заявка";
   $mail->Body         = $body;
-  $mail->AltBody      = $altBody;
 
   if(!$mail->send()) {
     echo 'Что-то пошло не так. ' . $mail->ErrorInfo;
     return false;
   } else {
-    echo 'Сообщение отправлено';
+    echo 'Форма успешно отправлена';
     return true;
   }
 

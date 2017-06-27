@@ -89,7 +89,6 @@ input[type=radio], input[type=checkbox], select
         height: 94px
         background-image: url(../img/spiderman-white-s.png)
     &--real3dWhite
-      margin-top: -3px
       &:before
         width: 151px
         height: 17px
@@ -167,14 +166,14 @@ input[type=radio], input[type=checkbox], select
     outline: none
 +cm('buttons')
 .btn
-  min-width: 251px
-  padding: 11px 15px
-  letter-spacing: 1.33px
   transition: all .3s ease-out
   &:hover,
   &:focus
     outline: none
   &--default
+    min-width: 251px
+    padding: 11px 15px
+    letter-spacing: 1.33px
     background-color: $btn-default-bg
     background-image: $btn-default-bgi
     border: 1px solid $btn-default-border
@@ -184,6 +183,9 @@ input[type=radio], input[type=checkbox], select
     font: 700 16px/28px $main-font
     text-transform: uppercase
   &--orange
+    min-width: 251px
+    padding: 11px 15px
+    letter-spacing: 1.33px
     border-radius: 28px
     background-color: $btn-orange-bg
     box-shadow: $btn-orange-box-shadow
@@ -196,15 +198,21 @@ input[type=radio], input[type=checkbox], select
       color: $btn-orange-color
   &__icon
     padding: 0 7px
-    float: left
+    &--loading
+      font-size: 12px
+    &--success
+      padding: 5px
+      color: $btn-success-color
 +r(768)
   .btn
     &__icon
       padding: 0
+      &--success
+        padding: 5px
 +r(1000)
   .btn
     &--default
-      padding: 28px 37px 14px
+      padding: 20px 37px 20px
       font: 700 23px/25px $main-font
       letter-spacing: 1.6px
     &--orange
@@ -369,6 +377,9 @@ input[type=radio], input[type=checkbox], select
       &--format
         padding: 10px 0
         font: 900 14px/14px $main-font
+        letter-spacing: 1px
+        .ic
+          line-height: 10px
       &--prize    
         padding-left: 9px
         font: 900 25px/33px $main-font
@@ -382,7 +393,7 @@ input[type=radio], input[type=checkbox], select
     font: 300 7px/9px $main-font
 +r(768)
   .header
-    padding: 109px 38px 40px
+    padding: 109px 0 40px
     &__icon
       background-image: url(../img/header-s.png)
       &:before
@@ -398,6 +409,8 @@ input[type=radio], input[type=checkbox], select
       &--format
         font: 700 24px/43px $main-font
         letter-spacing: 2.3px
+        .ic
+          line-height: 37px
       &--prize   
         padding-left: 49px
         font: 900 43px/65px $main-font
@@ -426,8 +439,10 @@ input[type=radio], input[type=checkbox], select
         font-size: 63px
         line-height: 86px
       &--format
-        font-size: 40px
+        font-size: 36px
         line-height: 70px
+        .ic
+          line-height: 63px
       &--prize   
         padding-left: 77px
         font-size: 64px
@@ -463,6 +478,10 @@ input[type=radio], input[type=checkbox], select
       padding: 10px 0
   &__btn
     margin: 14px
+    &--orange
+      &:disabled
+        animation: none
+        background-image: none
 .copyright
   position: absolute
   width: 100%
@@ -481,7 +500,10 @@ input[type=radio], input[type=checkbox], select
       padding-bottom: 26px
     &__text
       &--format
-        font: 700 23px/25px $main-font
+        font: 700 16px/19px $main-font
+        letter-spacing: 1px
+        .ic
+          line-height: 17px
       &--stock
         font: 400 24px/26px $main-font
     &__btn-group
@@ -498,7 +520,9 @@ input[type=radio], input[type=checkbox], select
       padding-bottom: 33px
     &__text
       &--format
-        font: 700 37px/45px $main-font
+        font: 700 24px/45px $main-font
+        .ic
+          line-height: 39px
       &--stock
         font: 400 33px/36px $main-font
     &__btn-group
@@ -518,9 +542,11 @@ input[type=radio], input[type=checkbox], select
     &__text
       &--format
         padding: 32px 0
-        font-size: 39px
+        font-size: 37px
         line-height: 41px
         letter-spacing: 4px
+        .ic
+          line-height: 33px
       &--stock
         font-size: 44px
         line-height: 46px
@@ -632,6 +658,8 @@ input[type=radio], input[type=checkbox], select
   &__item
     padding: 24px 0
     border-bottom: 1px dashed $registration-border
+    &--last
+      border-bottom: 0
   &__btn-group
     text-align: center
   &__rule
@@ -663,20 +691,45 @@ input[type=radio], input[type=checkbox], select
     letter-spacing: 1.2px
     text-transform: uppercase
     &--input-group
+      height: 40px
       width: 100%
       padding-left: 15px
-      padding-right: 40px
+      padding-right: 15px
       background-image: $form-input-bgi
       color: $text-default-color
+      text-transform: initial
   &__descr
     opacity: .87
-  &__icon
-    position: absolute
-    right: 10px
-    top: 50%
-    transform: translateY(-50%)
   &__label
     color: $text-default-color
+  &__submit
+    padding: 5px
+.input-group-addon
+  background-image: $form-input-bgi
+  padding: 7px 12px
+  border-radius: 0 4px 4px 0
+  border: 0
+  box-shadow: 0 0 0 2px $form-input-border
+input[type="radio"], 
+input[type="checkbox"]
+  margin-right: 7px
+.btn
+  &--promo
+    margin: 10px 0
+    padding: 10px 15px
+    width: 100%
+    font: 600 10px/12px $main-font
+    background: $promo-bg
+    border: 0
+    border-radius: 26px
+    color: $promo-color
+    font-size: 10px
+    right: 10px
+    text-transform: uppercase
+    &:hover,
+    &:focus
+      background: $promo-bg-hover
+      color: $promo-color
 .promo
   &__item
     padding: 10px 0
@@ -694,7 +747,7 @@ input[type=radio], input[type=checkbox], select
       display: block    
       width: 0
       height: 0
-      top: 50%
+      top: 45%
       right: 15px
       transform: translateY(-50%)
       border: 0 solid transparent
@@ -702,15 +755,6 @@ input[type=radio], input[type=checkbox], select
       border-right-width: 5px
       border-top: 6px solid $select-bg
       pointer-events: none
-  &:after
-    content: ''
-    position: absolute
-    display: block
-    width: 1px
-    height: 80%
-    top: 10%
-    right: 38px
-    background-color: $select-group-border
 .select
   appearance: none
 +rx(767)
@@ -734,6 +778,9 @@ input[type=radio], input[type=checkbox], select
       width: 100%
       max-width: 340px
       text-align: center
+      &--input-group
+        padding-left: 10px
+        padding-right: 10px
     &__descr
       font: 300 11px/13px $main-font
       text-align: center
@@ -744,8 +791,27 @@ input[type=radio], input[type=checkbox], select
     &__control
       padding: 10px 25px
       width: 100%
+      &--input-group
+        padding: 7px 40px 7px 15px
+  .select
+    &--reg-cinema
+      padding: 10px 15px
+      font: 400 18px/20px $main-font
+    &--online
+      padding: 10px 15px
+      font: 400 18px/20px $main-font
++r(1000)
+  .form
+    &__submit
+      position: absolute
+      right: 0
+      top: 0
+      bottom: 0
+  .btn--promo
+    position: absolute
+    margin: 0
+    padding: 7px 14px
+    top: 6px
 
 +comment('section footer style')
 .footer
-
-

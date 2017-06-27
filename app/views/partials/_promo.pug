@@ -23,16 +23,16 @@ mixin personalCols(count)
         if (block)
           block
     when 1
-      .col-xs-7.col-sm-4.col-lg-4
+      .col-xs-7.col-xs-push-5.col-sm-4.col-lg-4
         if (block)
           block
     when 2
-      .col-xs-5.col-sm-4.col-lg-2
+      .col-xs-5.col-xs-pull-7.col-sm-4.col-lg-2
         if (block)
           block
-section.registration
+section#registration.registration
   .container.registration__container
-    form(action='', method='POST')
+    form.contactForm(action='./lib/mail/mail.php', method='POST', novalidate)
       .row
         .col-xs-12
           h2.sub-heading!= content.index.registration.heading
@@ -41,14 +41,30 @@ section.registration
           .promo.registration__item
             .row
               each promo, count in content.index.registration.promo
-                .col-xs-12.col-sm-4
-                  .promo__item
-                    .form.promo__group
-                      .form__heading!= promo.heading
-                      .form__group
-                        input.form__control.form__control--mask(data-mask=promo.mask, placeholder=promo.placeholder, name='', tabindex='-1', type='text')
-                      .form__descr.example!= promo.text
-                        span.example__key!= promo.key
+                if (promo.select)
+                  .col-xs-12.col-sm-6
+                    .promo__item
+                      .form.promo__group
+                        .form__heading!= promo.heading
+                        .form__group
+                          select.select.form__control--input-group(class=promo.class, name=promo.name, required)
+                            each item in promo.select
+                              option(value=item.value)!= item.option
+                          p.help-block
+                else
+                  .col-xs-12.col-sm-4(class=(promo.code) ? promo.code : '')
+                    .promo__item
+                      .form.promo__group(class=(promo.code) ? promo.promoGroup : '')
+                        .form__heading!= promo.heading
+                        .form__group
+                            input.form__control.form__control--mask(class=promo.code ? promo.code : '', data-mask=(promo.mask) ? promo.mask : '', placeholder=promo.placeholder, name=promo.name, tabindex='-1', type='text', required, data-validation-required-message=promo.validation.message)
+                            if (promo.code)
+                              .form__submit.form__submit--promo
+                                button.btn.btn--promo(type='button', data-loading-text='<i class="fa fa-spinner fa-spin fa-3x fa-fw btn__icon btn__icon--loading"></i>', data-loaded-text='<i class="fa fa-check btn__icon btn__icon--success" aria-hidden="true"></i>')!= promo.btn
+
+                        .form__descr.example!= promo.text
+                          span.example__key!= promo.key
+                        .help-block
       .row
         .col-xs-12.col-sm-10.col-sm-offset-1
           .personal.registration__item
@@ -60,23 +76,28 @@ section.registration
                       .form.personal__group
                         .form__heading!= personal.heading
                         .form__group
-                          input.form__control(type='text', name='', tabindex='-1')
+                          input.form__control(type='email', name=personal.name, tabindex='-1', required)
+                          .help-block
                     when 1
                       .form.personal__group
                         .form__heading!= personal.heading
                         .form__group.input-group.form__group--date(data-provide='datepicker', data-date-format='mm/dd/yyyy')
-                          i.ic.form__icon(class=personal.icon)
-                          input.form__control.form__control--input-group(type='text', name='', tabindex='-1', placeholder=personal.text)
+                          input.form-control.form__control.form__control--input-group(type='text', name=personal.name, tabindex='-1', placeholder=personal.text, value=personal.text required)
+                          span.input-group-addon
+                            i.ic.form__icon(class=personal.icon)
+                          .help-block
                     when 2
                       .form.personal__group
                         .form__heading!= personal.heading
                         .form__group.input-group.input-group--select
-                          select.select.form__control.form__control--input-group
+                          select.select.form__control.form__control--input-group(name=personal.name, required)
                             if (personal.items)
                               each item in personal.items
                                 option.select__option(value=item)!= item
+
+                          .help-block
       .row
-        .col-xs-12.col-sm-10.col-sm-offset-1
+        .col-xs-10.col-xs-offset-1.col-sm-10.col-sm-offset-1
             .test.registration__item
               .row
                 each test, countTest in content.index.registration.test
@@ -100,22 +121,25 @@ section.registration
                                 .col-xs-6
                                   each item, count in checkbox
                                     .form__group
-                                      input.form__checkbox(type='checkbox', name='checkbox', id='checkbox--' + count)
-                                      label.form__label(for='checkbox--' + count)!= item
+                                      label.form__label
+                                        input.form__checkbox(type='checkbox', name='checkbox', data-validation-minchecked-minchecked=(count == 0) ? test.items.validation.minchecked : '', data-validation-minchecked-message=(count == 0) ? test.items.validation.message : '')
+                                        != item
                         if (test.films)
                           .form__heading.form__heading--film!= test.films.heading
                           if (test.films.items)
                             .form__group.input-group.input-group--select
-                              select.multiselect.form__control.form__control--input-group(multiple='multiple')
+                              select.multiselect.form__control.form__control--input-group(multiple='multiple', required)
                                 each item in test.films.items
                                   option(value=item)!= item
+                              .help-block
       .row
         .col-xs-12.col-sm-10.col-sm-offset-1
-          .registration__item
+          .registration__item.registration__item--last
             .registration__btn-group
-              a.btn.btn--orange.registration__btn!= content.index.registration.btns.logup
+              button.btn.btn--orange.registration__btn(type='submit', name=content.index.registration.btns.logup.name, data-loading-text='<i class=\'fa fa-circle-o-notch fa-spin\'></i> Форма отправляется...')!= content.index.registration.btns.logup.text
             .registration__btn-group
-              a.registration__rule!= content.index.registration.btns.rule
+              a.registration__rule!= content.index.registration.btns.rule.text
+          .success
 
 
 

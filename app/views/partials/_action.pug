@@ -1,4 +1,4 @@
-section.action
+section#action.action
   .container.action__container
     .row
       .col-xs-12.col-sm-10.col-sm-offset-1
@@ -10,13 +10,13 @@ section.action
           i.ic(class=content.index.action.icons.real3dBlack)
         .action__text.action__text--stock= content.index.action.text.stock
         .action__btn-group
-          button.btn.action__btn.btn--default
-            i.ic.btn__icon(class=content.index.action.icons.plane)
-            != content.index.action.btns.city
-          button.btn.action__btn.btn--default
-            i.ic.btn__icon(class=content.index.action.icons.cinema)
-            != content.index.action.btns.cinema
+          select.select.action__btn.select--city.btn--default
+          select.select.action__btn.select--cinema.btn--default
+          //- button.btn.action__btn.btn--default.action__btn--cinema
+          //-   i.ic.btn__icon(class=content.index.action.icons.cinema)
+          //-   != content.index.action.btns.cinema
         .action__btn-group
-          a.btn.btn--orange.action__btn.action__btn--orange!= content.index.action.btns.buy
+          form.action__form(action="", method="get")
+            button.btn.btn--orange.action__btn.action__btn--orange(type="submit", formtarget="_blank", data-href="#registration")!= content.index.action.btns.buy
     include ./_video.pug
     .hidden-xs.copyright= content.index.action.copyright

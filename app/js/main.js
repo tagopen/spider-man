@@ -30,77 +30,32 @@
   });
 
   // jQuery for page scrolling feature - requires jQuery Easing plugin
-  /*$(function() {
-      $('a.page-scroll').bind('click', function(event) {
-          var $anchor = $(this);
-          $('html, body').stop().animate({
-              scrollTop: $($anchor.attr('href')).offset().top
-          }, 1500, 'easeInOutExpo');
-          event.preventDefault();
+  $(function() {
+    $('.scroll-to').on('click', function(e) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+             scrollTop: ($($anchor.attr('href')).offset().top)
+        }, 1500);
+      e.preventDefault();
+    });
+
+    $('.action__btn--orange').on('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+             scrollTop: ($($anchor.data('href')).offset().top)
+        }, 1500);
       });
-  });*/
+  });
 
-
-  // Fixed navbar on Scroll
-  /*if(!$('.navbar-toggle').is(':visible')) {
-    $('.navbar').affix({
-      offset: {
-        top: $('header').innerHeight()
-      }
-    }); 
-  }*/
-
-  // Highlight the top nav as scrolling occurs
-  /*$('body').scrollspy({
-      target: '.navbar-fixed-top'
-  })*/
-
-  // Navbar class active
-  /*$(document).ready( function () {
-    $(".nav li").click( function () {
-      $(".nav li").removeClass("active");
-      $(this).addClass("active");
-    });
-  });*/
-
-  // Dropdowns on hover on desktop
-  /*var navbarToggle = '.navbar-toggle'; // name of navbar toggle, BS3 = '.navbar-toggle', BS4 = '.navbar-toggler'  
-  $('.dropdown, .dropup').each(function() {
-    var dropdown = $(this),
-      dropdownToggle = $('[data-toggle="dropdown"]', dropdown),
-      dropdownHoverAll = dropdownToggle.data('dropdown-hover-all') || false;
-    
-    // Mouseover
-    dropdown.hover(function(){
-      var notMobileMenu = $(navbarToggle).size() > 0 && $(navbarToggle).css('display') === 'none' && $(document).width() >= 992 ;
-      if ((dropdownHoverAll === true || (dropdownHoverAll === false && notMobileMenu))) { 
-        dropdownToggle.trigger('click');
-      }
-    });
-  });*/
-
-
-  // Close dropdowns on "esc"
-  /*$('.dropdown-menu').bind('keydown',function(event) {
-    // ESC = Keycode 27
-    if (event.keyCode == 27) {
-      $(this).parrent().find('.dropdown-toggle').dropdown('toggle');
-    }
-  });*/
-
-  // Closes the Responsive Menu on Menu Item Click
-/*  $('.navbar-collapse ul li a:not(.dropdown-toggle)').click(function() {
-    $('.navbar-collapse ul li a').click(function(){ 
-      $('.navbar-toggle:visible').click();
-    });
-  });*/
   // Masked Input
   $(function($){
     $(".form__control--mask").each(function() {
       var $this = $(this),
           maskPlaceholder = $this.attr('placeholder'),
           mask = $this.data('mask');
+      if (mask != '') {
         $this.mask(mask, {placeholder: maskPlaceholder});
+      }
     });
   });
 
@@ -119,6 +74,12 @@
       remove: false,
     });
     $('.company__item').matchHeight({
+      byRow: true,
+      property: 'height',
+      target: null,
+      remove: false,
+    });
+    $('.test__items').matchHeight({
       byRow: true,
       property: 'height',
       target: null,
@@ -146,12 +107,23 @@
   }
 
   // DatePicker
-  /*$(function () {
+  $(function () {
     $('.form__group--date').datetimepicker({
       locale: 'ru',
-      format: 'LT'
-    });
-  });*/
+      format: 'DD/MM/YYYY' + ' Г.',
+      icons: {
+        time: 'fa fa-clock-o',
+        date: 'fa fa-calendar',
+        up: 'fa fa-chevron-up',
+        down: 'fa fa-chevron-down',
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right',
+        today: 'fa fa-camera',
+        clear: 'fa fa-trash-o',
+        close: 'fa fa-times'
+      }
+    }).mask('99/99/9999 Г.', {placeholder: '02/12/1992 Г.'});
+  });
 
   // Multiselect
   $(function () {
@@ -171,6 +143,193 @@
   $(function() {
     $('.action__btn--orange').prop("disabled", true);
   });
+
+  $(function() {
+    var 
+    $selectCinema = $('.select--cinema').multiselect({
+      disableIfEmpty: true,
+      disabledText: 'Выберите кинотеатр',
+      nonSelectedText: 'Выберите кинотеатр',
+      enableFiltering: true,
+      filterPlaceholder: 'Поиск...',
+      maxHeight: 400,
+      numberDisplayed: 1,
+      buttonClass: 'action__btn btn--default',
+      templates: {
+        filter: '<div class="input-group"><input class="form-control multiselect-search" type="text"></div>',
+      },
+      onChange: function(option, checked) {
+        var link = $('.select--cinema option:selected').data('link');
+        $('.action__btn--orange').prop("disabled", false);
+        $('.action__form').attr('action', link);
+      }
+    }),
+    $select = $('.select--city').multiselect({
+      disableIfEmpty: true,
+      disabledText: 'Выберите город',
+      nonSelectedText: 'Выберите город',
+      enableFiltering: true,
+      filterPlaceholder: 'Поиск...',
+      maxHeight: 400,
+      numberDisplayed: 1,
+      buttonClass: 'action__btn btn--default',
+      templates: {
+        filter: '<div class="input-group"><input class="form-control multiselect-search" type="text"></div>',
+      },
+      onChange: function(option, checked) {
+        $.ajax({
+          type: "POST",
+          url: "../lib/model.php",
+          data: {
+            formname: 'place',
+            city: $('.select--city').val()
+          },
+          async: false,
+          success: function (response) {
+            var list = JSON.parse(response).result.place_cinema;
+            if (list) {
+                $selectCinema.multiselect('enable');
+                $('.select--cinema').empty().append('<option hidden selected value="" disabled multiselect-collapsible-hidden multiselect-filter-hidden>Выберите кинотеатр</option>');
+                $.each(list, function () {
+                  $('.select--cinema').append($("<option></option>").val(this['cinema_name']).attr('data-link', this['link']).html(this['cinema_name']));
+                });
+            }
+            else {
+              $('.select--cinema').empty().append('<option selected="selected" value="0">Нет данных<option>');
+            }
+            $selectCinema.multiselect('rebuild'); //refresh the select here
+          },
+          error: function (data) {
+            console.log(JSON.parse(data));
+          }
+        });
+        $('.action__btn--orange').prop("disabled", true).parent().attr('action', '');
+      }
+    });
   
- 
+    //apply the plugin
+    $select.multiselect('disable'); //disable it initially
+    $selectCinema.multiselect('disable'); //disable it initially
+
+    $.ajax({
+      type: "POST",
+      url: "../lib/model.php",
+      data: {
+        formname: 'place'
+      },
+      async: false,
+      success: function (response) {
+        var list = JSON.parse(response).result.place_city;
+
+        if (list) {
+            $select.multiselect('enable');
+            $('.select--city').empty().append('<option hidden selected value="" disabled multiselect-collapsible-hidden multiselect-filter-hidden>Выберите город</option>');
+            $.each(list, function () {
+              $('.select--city').append($("<option></option>").val(this['city']).html(this['city']));
+            });
+        }
+        else {
+          $('.select--city').empty().append('<option selected="selected" value="0">Нет данных<option>');
+        }
+        $select.multiselect('rebuild'); //refresh the select here
+      },
+      error: function (data) {
+        console.log(JSON.parse(data));
+      }
+    });
+
+
+    $('.select--reg-cinema').multiselect({
+      disableIfEmpty: true,
+      disabledText: 'Выберите кинотеатр ...',
+      nonSelectedText: 'Выберите кинотеатр ...',
+      enableFiltering: false,
+      filterPlaceholder: 'Поиск...',
+      maxHeight: 400,
+      numberDisplayed: 1,
+      inheritClass: true,
+      buttonContainer: '<div class="select-group" />',
+      templates: {
+        filter: '<div class="input-group"><input class="form-control multiselect-search" type="text"></div>',
+      },
+      onChange: function(option, checked) {
+        cinemaPromoOnline();
+      }
+    });
+
+    $('.select--online').multiselect({
+      disableIfEmpty: true,
+      disabledText: 'Способ оплаты ...',
+      nonSelectedText: 'Способ оплаты ...',
+      enableFiltering: false,
+      filterPlaceholder: 'Поиск...',
+      maxHeight: 400,
+      numberDisplayed: 1,
+      inheritClass: true,
+      buttonContainer: '<div class="select-group" />',
+      templates: {
+        filter: '<div class="input-group"><input class="form-control multiselect-search" type="text"></div>',
+      },
+      onChange: function(option, checked) {
+        cinemaPromoOnline();
+      }
+    });
+
+    function cinemaPromoOnline() {
+      if (($('.select--online').val() == 1) && ($('.select--reg-cinema') == 2)) {
+        $('.promo__item--code').fadeOut();
+      } else {
+        $('.promo__item--code').fadeIn();
+      }
+    }
+
+    function promoNotRequired () {
+      if (($('.select--online').val() == 0) && ($('.select--reg-cinema') == 2)) {
+        $('.promo__item--code').removeAttr('required');
+      } else {
+        $('.promo__item--code').attr('required', 'required');
+      }
+    }
+
+    $('.btn--promo').on('click', function(e) {
+      e.preventDefault();
+      var $form = $('.form--promo'),
+          $success = $form.find('.help-block'),
+          $btnform = $form.find('.btn--promo'),
+          iconSuccess = $btnform.data('loaded-text');
+      $btnform.prop("disabled", true).button('loading');
+      $.ajax({
+        type: "POST",
+        url: "../lib/model.php",
+        data: {
+          formname: 'promo',
+          cinema: $('[name=cinema] option:selected').text(),
+          status: $('[name=online]').val(),
+          promo: $('[name=promocode]').val()
+        },
+        async: true,
+        success: function (response) {
+          var list = JSON.parse(response).result;
+          if (list.promo_error) {
+            $btnform.prop("disabled", false).button('reset');
+            $success.addClass('text-danger').html(list.promo_error);
+          } else if (list.promo_status) {
+            $success.removeClass('text-danger').html('');
+            $btnform.closest('.form__submit--promo').html(iconSuccess);
+            $form.find('.promo__item--code').addClass('promo__item--activated').prop("disabled", true);
+            $('.select--online').prop('disabled', true);;
+            $('.select--reg-cinema').prop('disabled', true);;
+
+          }
+        },
+        error: function (data) {
+          $btnform.prop("disabled", false).button('reset');
+          console.log('error', JSON.parse(data));
+        }
+      });
+
+      e.preventDefault();
+    });
+  });
+
 })(jQuery); // End of use strict

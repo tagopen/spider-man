@@ -15,12 +15,12 @@
         nav: {
           links: [
             {
-              href: "/link1",
+              href: "#action",
               displayName: "Участвуйте в акции"
             },
 
             {
-              href: "/link2",
+              href: "#registration",
               displayName: "Регистрируйте промо-код"
             }
           ]
@@ -96,17 +96,17 @@
           [
             {
               img: {
-                src: "product-1.png",
-                alt: "Super Heroes"
-              },
-              descr: "Наборы LEGO &reg; Marvel&trade; Super Heroes"
-            },
-            {
-              img: {
                 src: "product-2.png",
                 alt: "Sony PlayStation 4 Slim"
               },
               descr: "Sony PlayStation 4 Slim"
+            },
+            {
+              img: {
+                src: "product-1.png",
+                alt: "Super Heroes"
+              },
+              descr: "Наборы LEGO &reg; Marvel&trade; Super Heroes"
             },
             {
               img: {
@@ -144,42 +144,93 @@
           heading: "Зарегистрируйте <b>ваш код:</b>",
           promo: [
             {
+              heading: "Выберите кинотеатр: ",
+              class: "select--reg-cinema",
+              name: "cinema",
+              select: [
+                {
+                  option: "Киномакс",
+                  value: "0"
+                },
+                {
+                  option: "Каро",
+                  value: "1"
+                },
+                {
+                  option: "Синема парк",
+                  value: "2"
+                },
+              ]
+            },
+            {
+              heading: "Как совершалась покупка: ",
+              class: "select--online",
+              name: "online",
+              select: [
+                {
+                  option: "Онлайн",
+                  value: "1"
+                },
+                {
+                  option: "Офлайн",
+                  value: "0"
+                },
+              ]
+            },
+            {
               heading: "Номер промо-кода: ",
-              mask: "aaa-999-aa",
-              placeholder: "ХХХ-ХХХ-ХХ",
               text: "Например, ",
-              key: "KLX-002-SD"
+              placeholder: "ХХХXХХХХХ",
+              key: "KLXM0002",
+              code: "promo__item--code",
+              name: "promocode",
+              promoGroup: 'form--promo',
+              btn: "Применить",
+              validation: {
+                message: "Введите промо-код"
+              }
             },
             {
               heading: "Номер первого билета: ",
               mask: "№ 999-999-999",
               placeholder: "№ ХХХ-ХХХ-ХХХ",
-              text: "Например,",
-              key: "112-332-456"
+              text: "Например, ",
+              key: "112-332-456",
+              name: "ticket1",
+              validation: {
+                message: "Введите номер билета"
+              }
             },
             {
               heading: "Номер второго билета: ",
               mask: "№ 999-999-999",
               placeholder: "№ ХХХ-ХХХ-ХХХ",
-              text: "Например,",
-              key: "112-332-456"
+              text: "Например, ",
+              key: "112-332-456",
+              name: "ticket2",
+              validation: {
+                message: "Введите номер билета"
+              }
             }
           ],
           personal: [
             {
-              heading: "E-mail для связи"
+              heading: "E-mail для связи",
+              name: 'email'
             },
             {
               heading: "Ваша дата рождения:",
               text: "02/12/1992 г.",
-              icon: "ic--date"
+              icon: "ic--date",
+              name: "date"
             },
             {
               heading: "Ваш пол:",
               items: [
                 "МУЖ",
                 "ЖЕН"
-              ]
+              ],
+              name: "gender"
             }
           ],
           test: [
@@ -199,25 +250,23 @@
               heading: "Как часто вы ходите в кино на формат 3D:",
               items: {
                 radio: [
-                  "1 пункт",
-                  "2 пункт",
-                  "3 пункт",
-                  "4 пункт",
-                  "5 пункт"
+                  "Каждый поход в кино",
+                  "В половине случаев",
+                  "Только если специальная цена или предложение",
+                  "Не хожу в 3D"
                 ]
               }
             },
             {
-              heading: "Какие последние фильмы вы смотрели в 3D:",
+              heading: "Каким жанрам в 3D вы отдавали предпочтение последние полгода:",
               subHeading: "(отметьте несколько, если смотрели больше одного фильма из списка)",
               films: {
                 heading: "Фильмы:",
                 items: [
-                  "Фильм 1",
-                  "Фильм 2",
-                  "Фильм 3",
-                  "Фильм 4",
-                  "Фильм 5"
+                  "Экшн («Конг: Остров Черепа» или «Меч Короля Артура»)",
+                  "Семейный («Красавицы и Чудовище» или «Пираты Карибского моря: мертвецы не рассказывают сказки»",
+                  "Анимация («Босс-молокосос» или «Зверопой»)",
+                  "Супергеройские («Стражи Галактики, Часть 2» или «Чудо-женщина»)"
                 ]
               }
             },
@@ -239,13 +288,22 @@
                     "Монитор",
                     "Пять звезд"
                   ]
+                },
+                validation: {
+                  minchecked: "1",
+                  message: "Выберите минимум 1 чекбокс"
                 }
               }
             }
           ],
           btns: {
-            logup: "Зарегистрировать",
-            rule: "Правила акции"
+            logup: {
+              text: "Зарегистрировать",
+              name: "Форма регистации"
+            },
+            rule: {
+              text: "Правила акции"
+            }
           }
         }
       }, //- index

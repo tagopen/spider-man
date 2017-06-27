@@ -1,6 +1,6 @@
 $(function() {
 
-  $(".contactForm input, .contactForm textarea").jqBootstrapValidation({
+  $(".contactForm input, .contactForm textarea, .contactForm select").jqBootstrapValidation({
     preventSubmit: true,
     submitError: function($form, event, errors) {
       // additional error messages or events
@@ -10,21 +10,38 @@ $(function() {
       $form.find("[type=submit]").prop("disabled", true).button('loading'); //prevent submit behaviour and display preloading
       
       // get values from FORM
-      var form    = $form.find('[type=submit]').attr("name"),
-          name    = $form.find("[name=name]").val(),
-          email   = $form.find("[name=email]").val(),
-          phone   = $form.find("[name=phone]").val(),
-          message = $form.find("[name=message]").val();
+      var form         = $form.find('[type=submit]').attr("name"),
+          cinema       = $form.find("[name=cinema] option:selected").text(),
+          online       = $form.find("[name=online] option:selected").text(),
+          promocode    = $form.find("[name=promocode]").val(),
+          ticket1      = $form.find("[name=ticket1]").val(),
+          ticket2      = $form.find("[name=ticket2]").val(),
+          email        = $form.find("[name=email]").val(),
+          date         = $form.find("[name=date]").val(),
+          radio0       = '',
+          radio1       = '';
+          
+      $('[name^=\"radio0\"]:checked').each(function() {
+        if ($(this).prop("checked")) {
+          radio0 = $(this).siblings().text();
+        }
+      });
+
+
+          console.log(radio0);
 
       $.ajax({
-        url: "././mail/mail.php",
+        url: "././lib/mail/mail.php",
         type: "POST",
         data: {
           form: form,
-          name: name,
-          phone: phone,
-          email: email,  
-          message: message
+          cinema: cinema,
+          online: online,
+          promocode: promocode,
+          ticket1: ticket1,
+          ticket2: ticket2,
+          email: email,
+          date: date,
         },
         cache: false,
         success: function() {
@@ -48,7 +65,7 @@ $(function() {
           $form.find('.success').html("<div class='alert alert-danger'>");
           $form.find('.success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
             .append("</button>");
-          $form.find('.success > .alert-danger').append("<strong>Приносим свои извинения, " + firstName + ", но наш почтовый сервер времено не работает. Попробуйте, отправить сообщение еще раз и сообщите нам о проблеме!");
+          $form.find('.success > .alert-danger').append("<strong>Приносим свои извинения, но наш почтовый сервер времено не работает. Попробуйте, отправить сообщение еще раз и сообщите нам о проблеме!");
           $form.find('.success > .alert-danger').append('</div>');
 
           // remove prevent submit behaviour and disable preloading

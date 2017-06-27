@@ -2,17 +2,22 @@ extends base/_layout.pug
 block variables
 
 block styles
-  // Multy Select
+  // Multiselect CSS
   link(rel="stylesheet" href="css/bootstrap-multiselect.css")
+  // Bootstrap DateTimePicker CSS
+  link(rel="stylesheet" href="css/bootstrap-datetimepicker.css")
 
 block scripts
-  // Bootstrap Date TimePicker
-  //- script(src='js/moment.js')
-  //- script(src='js/bootstrap-datetimepicker.js')
-  // Masked Input
-  script(src='js/jquery.maskedinput.js')
-  // Multy Select
+  // Bootstrap Date TimePicker JavaScript
+  script(src='js/moment-with-locales.js')
+  script(src='js/bootstrap-datetimepicker.js')
+  // Bootstrap Multy Select JavaScript
   script(src='js/bootstrap-multiselect.js')
+  // Bootstrap Validation JavaScript
+  script(src='js/jqBootstrapValidation.js')
+  script(src='js/contact_me.js')
+  // Masked Input JavaScript
+  script(src='js/jquery.maskedinput.js')
 
 
 block content

@@ -513,9 +513,6 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
     height: 94px;
     background-image: url(../img/spiderman-white-s.png);
   }
-  .ic--real3dWhite {
-    margin-top: -3px;
-  }
   .ic--real3dWhite:before {
     width: 151px;
     height: 17px;
@@ -609,9 +606,6 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
 
 /* buttons */
 .btn {
-  min-width: 251px;
-  padding: 11px 15px;
-  letter-spacing: 1.33px;
   -webkit-transition: all .3s ease-out;
   transition: all .3s ease-out;
 }
@@ -621,6 +615,9 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
 }
 
 .btn--default {
+  min-width: 251px;
+  padding: 11px 15px;
+  letter-spacing: 1.33px;
   background-color: #ebebeb;
   background-image: -webkit-gradient(linear, left bottom, left top, from(#ddd), to(#fefefe));
   background-image: -webkit-linear-gradient(bottom, #ddd 0%, #fefefe 100%);
@@ -636,6 +633,9 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
 }
 
 .btn--orange {
+  min-width: 251px;
+  padding: 11px 15px;
+  letter-spacing: 1.33px;
   -webkit-border-radius: 28px;
           border-radius: 28px;
   background-color: #f99515;
@@ -653,18 +653,29 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
 
 .btn__icon {
   padding: 0 7px;
-  float: left;
+}
+
+.btn__icon--loading {
+  font-size: 12px;
+}
+
+.btn__icon--success {
+  padding: 5px;
+  color: #00800a;
 }
 
 @media only screen and (min-width: 768px) {
   .btn__icon {
     padding: 0;
   }
+  .btn__icon--success {
+    padding: 5px;
+  }
 }
 
 @media only screen and (min-width: 1000px) {
   .btn--default {
-    padding: 28px 37px 14px;
+    padding: 20px 37px 20px;
     font: 700 23px/25px "PTSansProNarrow", sans-serif;
     letter-spacing: 1.6px;
   }
@@ -913,6 +924,10 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   .header__text--format {
     padding: 10px 0;
     font: 900 14px/14px "PTSansProNarrow", sans-serif;
+    letter-spacing: 1px;
+  }
+  .header__text--format .ic {
+    line-height: 10px;
   }
   .header__text--prize {
     padding-left: 9px;
@@ -932,7 +947,7 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
 
 @media only screen and (min-width: 768px) {
   .header {
-    padding: 109px 38px 40px;
+    padding: 109px 0 40px;
   }
   .header__icon {
     background-image: url(../img/header-s.png);
@@ -954,6 +969,9 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   .header__text--format {
     font: 700 24px/43px "PTSansProNarrow", sans-serif;
     letter-spacing: 2.3px;
+  }
+  .header__text--format .ic {
+    line-height: 37px;
   }
   .header__text--prize {
     padding-left: 49px;
@@ -994,8 +1012,11 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
     line-height: 86px;
   }
   .header__text--format {
-    font-size: 40px;
+    font-size: 36px;
     line-height: 70px;
+  }
+  .header__text--format .ic {
+    line-height: 63px;
   }
   .header__text--prize {
     padding-left: 77px;
@@ -1052,6 +1073,12 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   margin: 14px;
 }
 
+.action__btn--orange:disabled {
+  -webkit-animation: none;
+          animation: none;
+  background-image: none;
+}
+
 .copyright {
   position: absolute;
   width: 100%;
@@ -1080,7 +1107,11 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
     padding-bottom: 26px;
   }
   .action__text--format {
-    font: 700 23px/25px "PTSansProNarrow", sans-serif;
+    font: 700 16px/19px "PTSansProNarrow", sans-serif;
+    letter-spacing: 1px;
+  }
+  .action__text--format .ic {
+    line-height: 17px;
   }
   .action__text--stock {
     font: 400 24px/26px "PTSansProNarrow", sans-serif;
@@ -1104,7 +1135,10 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
     padding-bottom: 33px;
   }
   .action__text--format {
-    font: 700 37px/45px "PTSansProNarrow", sans-serif;
+    font: 700 24px/45px "PTSansProNarrow", sans-serif;
+  }
+  .action__text--format .ic {
+    line-height: 39px;
   }
   .action__text--stock {
     font: 400 33px/36px "PTSansProNarrow", sans-serif;
@@ -1131,9 +1165,12 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   }
   .action__text--format {
     padding: 32px 0;
-    font-size: 39px;
+    font-size: 37px;
     line-height: 41px;
     letter-spacing: 4px;
+  }
+  .action__text--format .ic {
+    line-height: 33px;
   }
   .action__text--stock {
     font-size: 44px;
@@ -1302,6 +1339,10 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   border-bottom: 1px dashed #ddd;
 }
 
+.registration__item--last {
+  border-bottom: 0;
+}
+
 .registration__btn-group {
   text-align: center;
 }
@@ -1348,30 +1389,64 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
 }
 
 .form__control--input-group {
+  height: 40px;
   width: 100%;
   padding-left: 15px;
-  padding-right: 40px;
+  padding-right: 15px;
   background-image: -webkit-gradient(linear, left bottom, left top, from(#eaeaea), to(#fcfcfc));
   background-image: -webkit-linear-gradient(bottom, #eaeaea 0%, #fcfcfc 100%);
   background-image: linear-gradient(to top, #eaeaea 0%, #fcfcfc 100%);
   color: #0a0a0a;
+  text-transform: initial;
 }
 
 .form__descr {
   opacity: .87;
 }
 
-.form__icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-
 .form__label {
   color: #0a0a0a;
+}
+
+.form__submit {
+  padding: 5px;
+}
+
+.input-group-addon {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#eaeaea), to(#fcfcfc));
+  background-image: -webkit-linear-gradient(bottom, #eaeaea 0%, #fcfcfc 100%);
+  background-image: linear-gradient(to top, #eaeaea 0%, #fcfcfc 100%);
+  padding: 7px 12px;
+  -webkit-border-radius: 0 4px 4px 0;
+          border-radius: 0 4px 4px 0;
+  border: 0;
+  -webkit-box-shadow: 0 0 0 2px #ebebeb;
+          box-shadow: 0 0 0 2px #ebebeb;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 7px;
+}
+
+.btn--promo {
+  margin: 10px 0;
+  padding: 10px 15px;
+  width: 100%;
+  font: 600 10px/12px "PTSansProNarrow", sans-serif;
+  background: #3F51B5;
+  border: 0;
+  -webkit-border-radius: 26px;
+          border-radius: 26px;
+  color: #fff;
+  font-size: 10px;
+  right: 10px;
+  text-transform: uppercase;
+}
+
+.btn--promo:hover, .btn--promo:focus {
+  background: #5871fd;
+  color: #fff;
 }
 
 .promo__item {
@@ -1394,7 +1469,7 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   display: block;
   width: 0;
   height: 0;
-  top: 50%;
+  top: 45%;
   right: 15px;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
@@ -1404,17 +1479,6 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   border-right-width: 5px;
   border-top: 6px solid #cdd4d8;
   pointer-events: none;
-}
-
-.input-group:after {
-  content: '';
-  position: absolute;
-  display: block;
-  width: 1px;
-  height: 80%;
-  top: 10%;
-  right: 38px;
-  background-color: #ecf1f2;
 }
 
 .select {
@@ -1449,6 +1513,10 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
     max-width: 340px;
     text-align: center;
   }
+  .form__control--input-group {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .form__descr {
     font: 300 11px/13px "PTSansProNarrow", sans-serif;
     text-align: center;
@@ -1462,6 +1530,32 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   .form__control {
     padding: 10px 25px;
     width: 100%;
+  }
+  .form__control--input-group {
+    padding: 7px 40px 7px 15px;
+  }
+  .select--reg-cinema {
+    padding: 10px 15px;
+    font: 400 18px/20px "PTSansProNarrow", sans-serif;
+  }
+  .select--online {
+    padding: 10px 15px;
+    font: 400 18px/20px "PTSansProNarrow", sans-serif;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .form__submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  .btn--promo {
+    position: absolute;
+    margin: 0;
+    padding: 7px 14px;
+    top: 6px;
   }
 }
 

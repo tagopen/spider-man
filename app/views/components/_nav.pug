@@ -3,5 +3,5 @@ nav.navbar
 		ul.nav-navbar
 			each value, i in content.site.nav.links
 				li.nav-navbar__item
-					a.nav-navbar__link(href= value.href)
+					a.nav-navbar__link.scroll-to(href= value.href)
 						span.nav-navbar__text= value.displayName
