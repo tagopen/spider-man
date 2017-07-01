@@ -683,10 +683,10 @@ input[type=radio], input[type=checkbox], select
     font: 300 17px/19px $main-font
   &__control
     padding: 10px
+    height: 40px
     background-color: $form-input-bg
     border-radius: 4px
-    box-shadow: 0 0 0 2px $form-input-border
-    border: none
+    border: 2px solid $form-input-border
     color: $form-input-color
     letter-spacing: 1.2px
     text-transform: uppercase
@@ -708,8 +708,8 @@ input[type=radio], input[type=checkbox], select
   background-image: $form-input-bgi
   padding: 7px 12px
   border-radius: 0 4px 4px 0
-  border: 0
-  box-shadow: 0 0 0 2px $form-input-border
+  border: 2px solid $form-input-border
+  cursor: pointer
 input[type="radio"], 
 input[type="checkbox"]
   margin-right: 7px
@@ -811,7 +811,8 @@ input[type="checkbox"]
     position: absolute
     margin: 0
     padding: 7px 14px
-    top: 6px
+    top: 8px
+    width: auto
 
 +comment('section footer style')
 .footer

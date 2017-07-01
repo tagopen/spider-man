@@ -10,55 +10,91 @@ $(function() {
       $form.find("[type=submit]").prop("disabled", true).button('loading'); //prevent submit behaviour and display preloading
       
       // get values from FORM
-      var form         = $form.find('[type=submit]').attr("name"),
-          cinema       = $form.find("[name=cinema] option:selected").text(),
-          online       = $form.find("[name=online] option:selected").text(),
-          promocode    = $form.find("[name=promocode]").val(),
-          ticket1      = $form.find("[name=ticket1]").val(),
-          ticket2      = $form.find("[name=ticket2]").val(),
-          email        = $form.find("[name=email]").val(),
-          date         = $form.find("[name=date]").val(),
-          radio0       = '',
-          radio1       = '';
-          
-      $('[name^=\"radio0\"]:checked').each(function() {
+      var formname           = 'registration',
+          form               = $form.find('[type=submit]').attr("name"),
+          cinema             = $form.find('[name=cinema] option:selected').text(),
+          purchase           = $form.find('[name=online] option:selected').text(),
+          promo              = $form.find('[name=promocode]').val(),
+          ticket_1           = $form.find('[name=ticket1]').val(),
+          ticket_2           = $form.find('[name=ticket2]').val(),
+          email              = $form.find('[name=email]').val(),
+          birthday           = $form.find('[name=date]').val(),
+          gender             = $form.find('[name=gender]').val(),
+          cinema_per_month   = new Array(),
+          cinema_3d          = new Array(),
+          genre              = $form.find("[name^=\"films3d\"]").val(),
+          card_loyalty       = new Array();
+
+      $("[name^=\"radio0\"]:checked").each(function() {
         if ($(this).prop("checked")) {
-          radio0 = $(this).siblings().text();
+          var radioText = $(this).siblings().text();
+
+          cinema_per_month.push($.trim(radioText) + " ");
         }
       });
 
+      $("[name^=\"radio1\"]:checked").each(function() {
+        if ($(this).prop("checked")) {
+          var radioText = $(this).siblings().text();
 
-          console.log(radio0);
+          cinema_3d.push($.trim(radioText) + " ");
+        }
+      });
+
+      $("[name^=\"checkbox\"]:checked").each(function() {
+        if ($(this).prop("checked")) {
+          var radioText = $(this).siblings().text();
+          card_loyalty.push($.trim(radioText) + " ");
+        }
+      });
 
       $.ajax({
-        url: "././lib/mail/mail.php",
+        url: "././lib/model.php",
         type: "POST",
         data: {
-          form: form,
-          cinema: cinema,
-          online: online,
-          promocode: promocode,
-          ticket1: ticket1,
-          ticket2: ticket2,
-          email: email,
-          date: date,
+          form: $.trim(form),
+          formname: $.trim(formname),
+          cinema: $.trim(cinema),
+          purchase: $.trim(purchase),
+          promo: $.trim(promo),
+          ticket_1: $.trim(ticket_1),
+          ticket_2: $.trim(ticket_2),
+          email: $.trim(email),
+          birthday: $.trim(birthday),
+          gender: $.trim(gender),
+          cinema_per_month: cinema_per_month,
+          cinema_3d: cinema_3d,
+          genre: genre,
+          card_loyalty: card_loyalty
         },
         cache: false,
-        success: function() {
-          // Success message
-          $form.find('.success').html("<div class='alert alert-success'>");
-          $form.find('.success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-            .append("</button>");
-          $form.find('.success > .alert-success')
-            .append("<strong>Ваше сообщение успешно отправлено. В ближайшее время наши менеджеры свяжутся с вами! </strong>");
-          $form.find('.success > .alert-success')
-            .append('</div>');
+        success: function(response) {
+          if (response) {
+            var list = JSON.parse(response).result;
+            if (list.promo_error) {
+
+              $form.find('.success').html("<div class='alert alert-danger'>");
+              $form.find('.success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                .append("</button>");
+              $form.find('.success > .alert-danger').append("<strong>" + list.promo_error);
+              $form.find('.success > .alert-danger').append('</div>');
+            } else {
+              // Success message
+              $form.find('.success').html("<div class='alert alert-success'>");
+              $form.find('.success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                .append("</button>");
+              $form.find('.success > .alert-success')
+                .append("<strong>Cообщение успешно отправлено.</strong>");
+              $form.find('.success > .alert-success')
+                .append('</div>');
+            }
+          }
 
           // remove prevent submit behaviour and disable preloading
           $form.find("[type=submit]").prop("disabled", false).button('reset');  
 
           //clear all fields
-          $form.trigger("reset");
+          //$form.trigger("reset");
         },
         error: function() {
           // Fail message
@@ -72,7 +108,7 @@ $(function() {
           $form.find("[type=submit]").prop("disabled", false).button('reset'); 
 
           //clear all fields
-          $form.trigger("reset");
+          //$form.trigger("reset");
         },
       })
     },

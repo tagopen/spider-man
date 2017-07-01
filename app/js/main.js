@@ -108,6 +108,7 @@
 
   // DatePicker
   $(function () {
+
     $('.form__group--date').datetimepicker({
       locale: 'ru',
       format: 'DD/MM/YYYY' + ' Г.',
@@ -122,7 +123,7 @@
         clear: 'fa fa-trash-o',
         close: 'fa fa-times'
       }
-    }).mask('99/99/9999 Г.', {placeholder: '02/12/1992 Г.'});
+    });
   });
 
   // Multiselect
@@ -312,13 +313,13 @@
           var list = JSON.parse(response).result;
           if (list.promo_error) {
             $btnform.prop("disabled", false).button('reset');
-            $success.addClass('text-danger').html(list.promo_error);
+            $success.html(list.promo_error);
           } else if (list.promo_status) {
-            $success.removeClass('text-danger').html('');
+            $success.html('');
             $btnform.closest('.form__submit--promo').html(iconSuccess);
             $form.find('.promo__item--code').addClass('promo__item--activated').prop("disabled", true);
-            $('.select--online').prop('disabled', true);;
-            $('.select--reg-cinema').prop('disabled', true);;
+            //$('.select--online').multiselect('disable');
+            //$('.select--reg-cinema').multiselect('disable');
 
           }
         },
