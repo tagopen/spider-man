@@ -134,7 +134,7 @@
       nonSelectedText:  'Не выбрано',
       allSelectedText:  'Всё выбрано',
       selectAllText:    'Выбрать все!',
-      numberDisplayed:  1,
+      numberDisplayed:  0,
       buttonWidth:      '100%',
       nSelectedText:    ' выбрано'
     });
@@ -318,8 +318,8 @@
             $success.html('');
             $btnform.closest('.form__submit--promo').html(iconSuccess);
             $form.find('.promo__item--code').addClass('promo__item--activated').prop("disabled", true);
-            //$('.select--online').multiselect('disable');
-            //$('.select--reg-cinema').multiselect('disable');
+            $('.select--online').attr('disabled', 'disabled');
+            $('.select--reg-cinema').attr('disabled', 'disabled');
 
           }
         },

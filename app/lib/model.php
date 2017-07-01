@@ -28,9 +28,11 @@
       //DB::$user = 'pimgroup_spider';
       //DB::$password = 'spiderman';
       //DB::$dbName = 'pimgroup_spider';
+
       DB::$user = 'root';
       DB::$password = '';
       DB::$dbName = 'boris';
+
       DB::$host = 'localhost'; //defaults to localhost if omitted
       DB::$encoding = 'utf8'; // defaults to latin1 if omitted
 
@@ -93,7 +95,7 @@
         'cinema_3d' => ($data['cinema_3d']) ? implode(", ", $data['cinema_3d']) : '',
         'genre' => (!empty($data['genre'])) ? $data['genre'] : ' ',
         'card_loyalty' => ($data['card_loyalty']) ? implode(", ", $data['card_loyalty']) : '',
-        'date_added' => date('Y-m-d H:i:s')
+        'date_added' => DB::sqleval("NOW()")
       ));
 
       ModelClass::sendMail();
