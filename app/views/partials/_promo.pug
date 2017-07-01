@@ -57,7 +57,7 @@ section#registration.registration
                       .form.promo__group(class=(promo.code) ? promo.promoGroup : '')
                         .form__heading!= promo.heading
                         .form-group.form__group
-                          input.form-control.form__control.form__control--mask(class=promo.code ? promo.code : '', data-mask=(promo.mask) ? promo.mask : '', placeholder=promo.placeholder, name=promo.name, tabindex='-1', type='text', required, data-validation-required-message=promo.validation.message)
+                          input.form-control.form__control.form__control--mask(class=promo.code ? promo.code : '', placeholder=promo.placeholder, name=promo.name, tabindex='-1', type='text', required, data-validation-required-message=promo.validation.message)
                           p.help-block.text-danger
                             if (promo.code)
                               .form__submit.form__submit--promo
@@ -140,7 +140,7 @@ section#registration.registration
             .registration__btn-group
               button.btn.btn--orange.registration__btn(type='submit', name=content.index.registration.btns.logup.name, data-loading-text='<i class=\'fa fa-circle-o-notch fa-spin\'></i> Форма отправляется...')!= content.index.registration.btns.logup.text
             .registration__btn-group
-              a.registration__rule!= content.index.registration.btns.rule.text
+              a.registration__rule(target="_blank" href=content.index.registration.btns.rule.link)!= content.index.registration.btns.rule.text
           .success
 
 
