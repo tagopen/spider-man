@@ -1,6 +1,7 @@
 <?php
   session_start();
   require_once './mysql/meekrodb.2.3.class.php';
+  require_once './mail/mail.php';
   class ModelClass {
     public $formNamePlace;
     public $formNamePromocode;
@@ -87,14 +88,15 @@
         'date_added' => date('Y-m-d H:i:s')
       ));
 
-      $this->result['promo_status'] = "Сообщение успешно отправлено!";
+      if (MailClass::sendMail()) {
+        $this->result['promo_status'] = "Сообщение успешно отправлено!";
+      } else {
+        $this->result['promo_error'] = "Сообщение не отправлено!";
+      }
 
       if(isset($_SESSION['promo'])) {
         unset($_SESSION['promo']);
       }
-      
-      require_once './mail/mail.php';
-
     }
 
     function returnQuery() {

@@ -6,99 +6,137 @@
     require_once("lib/class.smtp.php");
   }
 
-  $http_host = $_SERVER['HTTP_HOST'];
-  $body = '';
-  if ( substr($http_host, 0, 4)=='www.') {
-    $host_name = substr($http_host, 4);
-  } else {
-    $host_name = $http_host;
-  }
-  if (isset($_SERVER['HTTP_REFERER'])) {
-    $http_referer = $_SERVER['HTTP_REFERER'];
-  } else {
-    $http_referer = '';
-  }
-  define ('HTTP_SERVER', 'http://' . $http_host . '/');
-  define ('HOST_NAME', $host_name);
-  define ('HTTP_REFERER', $http_referer);
-  $post = array( 
-    'host_name'     => HOST_NAME,
-    'host_dir'      => HTTP_SERVER,
-    'host_referer'  => HTTP_REFERER
-    );
-  if (!empty($_POST["form"])) {
-    foreach( $_POST["form"] as $key => $value) { 
-      $post['user_form'] = $key;
-      $body .= 'Форма: ' . $post['user_form'] . chr(10) . chr(13);
+class MailClass {
+  function sendMail() {
+
+    $http_host = $_SERVER['HTTP_HOST'];
+    $body = '';
+    if ( substr($http_host, 0, 4)=='www.') {
+      $host_name = substr($http_host, 4);
+    } else {
+      $host_name = $http_host;
+    }
+    if (isset($_SERVER['HTTP_REFERER'])) {
+      $http_referer = $_SERVER['HTTP_REFERER'];
+    } else {
+      $http_referer = '';
+    }
+    define ('HTTP_SERVER', 'http://' . $http_host . '/');
+    define ('HOST_NAME', $host_name);
+    define ('HTTP_REFERER', $http_referer);
+    $post = array( 
+      'host_name'     => HOST_NAME,
+      'host_dir'      => HTTP_SERVER,
+      'host_referer'  => HTTP_REFERER
+      );
+
+    if (!empty($_POST["form"]) && isset($_POST["form"])) {
+      foreach( $_POST["form"] as $key => $value) { 
+        $post['user_form'] = $key;
+        $body .= 'Форма: ' . $post['user_form'] . chr(10) . chr(13);
+      }
+    }
+
+    if (!empty($_POST["email"]) && isset($_POST["email"])) {
+      $post['user_email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+      $body .= 'Email: ' . $post['user_email'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["cinema"]) && isset($_POST["cinema"])) {
+      $post['user_cinema'] = filter_input(INPUT_POST, 'cinema', FILTER_SANITIZE_EMAIL);
+      $body .= 'Кинотеатр: ' . $post['user_cinema'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["purchase"]) && isset($_POST["purchase"])) {
+      $post['user_purchase'] = filter_input(INPUT_POST, 'purchase', FILTER_SANITIZE_EMAIL);
+      $body .= 'Свособ оплаты: ' . $post['user_purchase'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["promo"]) && isset($_POST["promo"])) {
+      $post['user_promo'] = filter_input(INPUT_POST, 'promo', FILTER_SANITIZE_EMAIL);
+      $body .= 'Промо код: ' . $post['user_promo'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["ticket_1"]) && isset($_POST["ticket_1"])) {
+      $post['user_ticket_1'] = filter_input(INPUT_POST, 'ticket_1', FILTER_SANITIZE_EMAIL);
+      $body .= 'Билет №1: ' . $post['user_ticket_1'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["ticket_2"]) && isset($_POST["ticket_2"])) {
+      $post['user_ticket_2'] = filter_input(INPUT_POST, 'ticket_2', FILTER_SANITIZE_EMAIL);
+      $body .= 'Билет №2: ' . $post['user_ticket_2'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["birthday"]) && isset($_POST["birthday"])) {
+      $post['user_birthday'] = filter_input(INPUT_POST, 'birthday', FILTER_SANITIZE_EMAIL);
+      $body .= 'День рождения: ' . $post['user_birthday'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["gender"]) && isset($_POST["gender"])) {
+      $post['user_gender'] = filter_input(INPUT_POST, 'gender', FILTER_SANITIZE_EMAIL);
+      $body .= 'Пол: ' . $post['user_gender'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["cinema_per_month"]) && isset($_POST["cinema_per_month"])) {
+      foreach( $_POST["cinema_per_month"] as $key => $value){ 
+        $post['cinema_per_month'] .= $value . ', ';
+      }
+
+      $body .= 'Сколько раз в месяц вы ходите в кино: ' . $post['cinema_per_month'] . chr(10) . chr(13);
+    }
+    
+    if (!empty($_POST["cinema_3d"]) && isset($_POST["cinema_3d"])) {
+      foreach( $_POST["cinema_3d"] as $key => $value){ 
+        $post['cinema_3d'] .= $value . ', ';
+      }
+
+      $body .= 'Как часто вы ходите в кино на формат 3D: ' . $post['cinema_3d'] . chr(10) . chr(13);
+    }
+
+    if (!empty($_POST["genre"]) && isset($_POST["genre"])) {
+      foreach( $_POST["genre"] as $key => $value){ 
+        $post['genre'] .= $value . ', ';
+      }
+
+      $body .= 'Каким жанрам в 3D вы отдавали предпочтение последние полгода: ' . $post['genre'] . chr(10) . chr(13);
+    }
+    
+    if (!empty($_POST["cinema_3d"]) && isset($_POST["cinema_3d"])) {
+      foreach( $_POST["cinema_3d"] as $key => $value){ 
+        $post['cinema_3d'] .= $value . ', ';
+      }
+
+      $body .= 'Сколько раз в месяц вы ходите в кино: ' . $post['cinema_3d'] . chr(10) . chr(13);
+    }  
+
+    if (!empty($_POST["card_loyalty"]) && isset($_POST["card_loyalty"])) {
+      foreach( $_POST["card_loyalty"] as $key => $value){ 
+        $post['card_loyalty'] = $value;
+      }
+
+      $body .= 'Сколько раз в месяц вы ходите в кино: ' . $post['card_loyalty'] . chr(10) . chr(13);
+    }
+
+    $body .= chr(10) . chr(13) . "С уважением," . chr(10) . chr(13) . "разработчики сайта " . $post['host_referer'];
+
+    $mail = new PHPMailer();
+    $mail->CharSet      = 'UTF-8';
+    $mail->IsSendmail();
+
+    $from = 'no-repeat@tagopen.com';
+    $to = "Artem2431@gmail.com";
+    $mail->SetFrom($from, HOST_NAME);
+    $mail->AddAddress($to);
+    $mail->isHTML(false);
+    $mail->Subject      = "Новая заявка";
+    $mail->Body         = $body;
+
+    if(!$mail->send()) {
+      return false;
+    } else {
+      return true;
     }
   }
-  if (!empty($_POST["email"])) {
-    $post['user_email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $body .= 'Почта: ' . $post['user_email'] . chr(10) . chr(13);
-  }
-
-  if (!empty($_POST["date"])) {
-    $post['user_date'] = filter_input(INPUT_POST,'date', FILTER_SANITIZE_STRING);
-    $body .= 'Дата рождения: ' . $post['user_date'] . chr(10) . chr(13);
-  }
-
-  if (!empty($_POST["gender"])) {
-    $post['user_gender'] = filter_input(INPUT_POST,'gender', FILTER_SANITIZE_STRING);
-    $body .= 'Пол: ' . $post['user_gender'] . chr(10) . chr(13);
-  }
-
-  if (!empty($_POST["cinema"])) {
-    $post['user_cinema'] = filter_input(INPUT_POST, 'cinema', FILTER_SANITIZE_STRING);
-    $body .= 'Кинотеатр: ' . $post['user_cinema'] . chr(10) . chr(13);
-  }
-
-  if (!empty($_POST["online"])) {
-    $post['user_online'] = filter_input(INPUT_POST, 'online', FILTER_SANITIZE_STRING);
-    $body .= 'Покупка: ' . $post['user_online'] . chr(10) . chr(13);
-  }
-
-  if (!empty($_POST["promocode"])) {
-    $post['user_promocode'] = filter_input(INPUT_POST, 'promocode', FILTER_SANITIZE_STRING);
-    $body .= 'Промо-код: ' . $post['user_promocode'] . chr(10) . chr(13);
-  }
-
-  if (!empty($_POST["ticket1"])) {
-    $post['user_ticket1'] = filter_input(INPUT_POST, 'ticket1', FILTER_SANITIZE_STRING);
-    $body .= 'Билет №1: ' . $post['user_ticket1'] . chr(10) . chr(13);
-  }
-
-  if (!empty($_POST["ticket2"])) {
-    $post['user_ticket2'] = filter_input(INPUT_POST, 'ticket2', FILTER_SANITIZE_STRING);
-    $body .= 'Билет №2: ' . $post['user_ticket2'] . chr(10) . chr(13);
-  }
-
-  if (!empty($_POST["product_name"])) {
-    foreach( $_POST["product_name"] as $key => $value){ 
-      $post['product_name'] = $key;
-      $body .= 'Название товара: ' . $post['product_name'] . chr(10) . chr(13);
-    }
-  }
-
-  $body .= chr(10) . chr(13) . "С уважением," . chr(10) . chr(13) . "разработчики сайта " . $post['host_referer'];
-
-  $mail = new PHPMailer();
-  $mail->CharSet      = 'UTF-8';
-  $mail->IsSendmail();
-
-  $from = 'no-repeat@tagopen.com';
-  $to = "Artem2431@gmail.com";
-  $mail->SetFrom($from, HOST_NAME);
-  $mail->AddAddress($to);
-  $mail->isHTML(false);
-  $mail->Subject      = "Новая заявка";
-  $mail->Body         = $body;
-
-  if(!$mail->send()) {
-    echo 'Что-то пошло не так. ' . $mail->ErrorInfo;
-    return false;
-  } else {
-    echo 'Форма успешно отправлена';
-    return true;
-  }
+}
 
 ?>
