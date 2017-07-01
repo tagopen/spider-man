@@ -49,7 +49,7 @@ $(function() {
       });
 
       $.ajax({
-        url: "././lib/mail/mail.php",
+        url: "../lib/model.php",
         type: "POST",
         data: {
           form: $.trim(form),
@@ -70,7 +70,26 @@ $(function() {
         cache: false,
         success: function(response) {
           console.log(response);
+          if (response) {
+            var list = JSON.parse(response).result;
+            if (list.promo_error) {
 
+              $form.find('.success').html("<div class='alert alert-danger'>");
+              $form.find('.success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                .append("</button>");
+              $form.find('.success > .alert-danger').append("<strong>" + list.promo_error);
+              $form.find('.success > .alert-danger').append('</div>');
+            } else {
+              // Success message
+              $form.find('.success').html("<div class='alert alert-success'>");
+              $form.find('.success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                .append("</button>");
+              $form.find('.success > .alert-success')
+                .append("<strong>Cообщение успешно отправлено.</strong>");
+              $form.find('.success > .alert-success')
+                .append('</div>');
+            }
+          }
           // remove prevent submit behaviour and disable preloading
           $form.find("[type=submit]").prop("disabled", false).button('reset');  
 
