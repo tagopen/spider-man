@@ -72,6 +72,7 @@ gulp.task('scripts', ['bower'], () => {
      'bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
      'bower_components/jquery.maskedinput/dist/jquery.maskedinput.js',
      'bower_components/matchHeight/dist/jquery.matchHeight.js',
+     'bower_components/bootstrap-validator/dist/validator.js',
      'bower_components/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
    ])
  .pipe($.plumber())
