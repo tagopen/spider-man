@@ -21,10 +21,10 @@
     });
   });
 
-  $(function () {
+  $(function() {
     $('#video__play').on('click', function(e) {
-      let dataYoutube = $(this).parents('.video').data('youtube');
-      $(this).replaceWith('<video class="video__controls" controls><source src="SOG_UniverseKids17_30_v1_RealD_HD-4-H_264.mp4" type="video/mp4">Your browser does not support the video tag.</video>');
+      var dataYoutube = $(this).closest('.video').data('youtube');
+      $(this).replaceWith('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/' + dataYoutube + '?autoplay=1" frameborder="0" allowfullscreen></iframe></div>');
       e.preventDefault();
     });
   });

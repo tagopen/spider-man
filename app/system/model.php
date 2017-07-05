@@ -224,7 +224,7 @@
 
       $mail = new PHPMailer();
       $mail->CharSet      = 'UTF-8';
-      $mail->IsSendmail();
+      //$mail->IsSendmail();
 
       $from = 'no-repeat@tagopen.com';
       $to = "Artem2431@gmail.com";
