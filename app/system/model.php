@@ -235,7 +235,7 @@
       $mail->Body         = $body;
 
       if(!$mail->send()) {
-        $this->result['promo_error'] = "Сообщение не отправлено!";
+        $this->result['promo_error'] = "Сообщение не отправлено!" . $mail->ErrorInfo;
       } else {
         $this->result['promo_status'] = "Сообщение успешно отправлено!";
       }
@@ -293,7 +293,7 @@
             $this->error['promo_error'] = "Выберите, сколько раз в месяц вы ходите в кино";
           } elseif (!isset($post['cinema_3d'])) {
             $this->error['promo_error'] = "Выберите, как часто вы ходите в кино на формат 3D";
-          } elseif ($_SESSION['promo'] == sha1($this->salt . $post['promo'])) {//Never did this
+          } elseif (($_SESSION['promo'] == sha1($this->salt . $post['promo'])) || (strcasecmp ($post['cinema'], "Синема парк") == 0)) {//Never did this
             $data = array(
               'cinema' => $post['cinema'],
               'purchase' => $post['purchase'],

@@ -152,7 +152,7 @@
       </section>
       <section class="registration" id="registration">
         <div class="container registration__container">
-          <form class="contactForm" action="./lib/model.php" method="POST" novalidate>
+          <form class="contactForm" data-toggle="validator" role="form" action="./system/model.php" method="POST" novalidate>
             <div class="row">
               <div class="col-xs-12">
                 <h2 class="sub-heading">Зарегистрируйте <b>ваш код:</b></h2>
@@ -167,12 +167,12 @@
                         <div class="form promo__group">
                           <div class="form__heading">Выберите кинотеатр: </div>
                           <div class="form-group form__group">
-                            <select class="form-control select form__control--input-group select--reg-cinema" name="cinema" data-validation-required-message="Выберите кинотеатр" required>
+                            <select class="form-control select form__control--input-group select--reg-cinema" name="cinema" data-error="Выберите кинотеатр" required>
                               <option value="0">Киномакс</option>
                               <option value="1">Каро</option>
                               <option value="2">Синема парк</option>
                             </select>
-                            <p class="help-block text-danger"></p>
+                            <p class="help-block with-errors"></p>
                           </div>
                         </div>
                       </div>
@@ -182,11 +182,11 @@
                         <div class="form promo__group">
                           <div class="form__heading">Как совершалась покупка: </div>
                           <div class="form-group form__group">
-                            <select class="form-control select form__control--input-group select--online" name="online" data-validation-required-message="Выберите способ оплаты" required>
+                            <select class="form-control select form__control--input-group select--online" name="online" data-error="Выберите способ оплаты" required>
                               <option value="1">Онлайн</option>
                               <option value="0">Офлайн</option>
                             </select>
-                            <p class="help-block text-danger"></p>
+                            <p class="help-block with-errors"></p>
                           </div>
                         </div>
                       </div>
@@ -196,8 +196,8 @@
                         <div class="form promo__group form--promo">
                           <div class="form__heading">Номер промо-кода: </div>
                           <div class="form-group form__group">
-                            <input class="form-control form__control form__control--mask promo__item--code" placeholder="ХХХXХХХХХ" name="promocode" tabindex="-1" type="text" required data-validation-required-message="Введите промо-код">
-                            <p class="help-block text-danger">
+                            <input class="form-control form__control form__control--mask promo__item--code" placeholder="ХХХXХХХХХ" name="promocode" tabindex="-1" type="text" required data-error="Введите промо-код">
+                            <p class="help-block with-errors">
                               <div class="form__submit form__submit--promo">
                                 <button class="btn btn--promo" type="button" data-loading-text="&lt;i class=&quot;fa fa-spinner fa-spin fa-3x fa-fw btn__icon btn__icon--loading&quot;&gt;&lt;/i&gt;" data-loaded-text="&lt;i class=&quot;fa fa-check btn__icon btn__icon--success&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">Применить</button>
                               </div>
@@ -212,8 +212,8 @@
                         <div class="form promo__group">
                           <div class="form__heading">Номер первого билета: </div>
                           <div class="form-group form__group">
-                            <input class="form-control form__control form__control--mask" placeholder="№ " name="ticket1" tabindex="-1" type="text" required data-validation-required-message="Введите номер билета">
-                            <p class="help-block text-danger">
+                            <input class="form-control form__control form__control--mask" placeholder="№ " name="ticket1" tabindex="-1" type="text" required data-error="Введите номер билета">
+                            <p class="help-block with-errors">
                             </p>
                           </div>
                           <div class="form__descr example"><span class="example__key"></span></div>
@@ -225,8 +225,8 @@
                         <div class="form promo__group">
                           <div class="form__heading">Номер второго билета: </div>
                           <div class="form-group form__group">
-                            <input class="form-control form__control form__control--mask" placeholder="№ " name="ticket2" tabindex="-1" type="text" required data-validation-required-message="Введите номер билета">
-                            <p class="help-block text-danger">
+                            <input class="form-control form__control form__control--mask" placeholder="№ " name="ticket2" tabindex="-1" type="text" required data-error="Введите номер билета">
+                            <p class="help-block with-errors">
                             </p>
                           </div>
                           <div class="form__descr example"><span class="example__key"></span></div>
@@ -245,8 +245,8 @@
                             <div class="form personal__group">
                               <div class="form__heading">E-mail для связи</div>
                               <div class="form-group form__group">
-                                <input class="form-control form__control" type="email" name="email" tabindex="-1" data-validator-validemail-message="Некорректный email" data-validation-required-message="Введите почту" required>
-                                <p class="help-block text-danger"></p>
+                                <input class="form-control form__control" type="email" name="email" tabindex="-1" data-error="Введите почту" required>
+                                <p class="help-block with-errors"></p>
                               </div>
                             </div>
                           </div>
@@ -255,9 +255,9 @@
                               <div class="form__heading">Ваша дата рождения:</div>
                               <div class="form-group">
                                 <div class="form__group input-group form__group--date" data-provide="datepicker">
-                                  <input class="form-control form-control form__control form__control--input-group" type="text" name="date" tabindex="-1" placeholder="02/12/1992 г." data-validation-required-message="Введите дату рождения" required><span class="input-group-addon"><i class="ic form__icon ic--date"></i></span>
+                                  <input class="form-control form-control form__control form__control--input-group" type="text" name="date" tabindex="-1" placeholder="02/12/1992 г." data-error="Введите дату рождения" required><span class="input-group-addon"><i class="ic form__icon ic--date"></i></span>
                                 </div>
-                                <p class="help-block text-danger"></p>
+                                <p class="help-block with-errors"></p>
                               </div>
                             </div>
                           </div>
@@ -265,11 +265,11 @@
                             <div class="form personal__group">
                               <div class="form__heading">Ваш пол:</div>
                               <div class="form-group form__group input-group input-group--select">
-                                <select class="form-control select form__control form__control--input-group" name="gender" data-validation-required-message="Введите пол" required>
+                                <select class="form-control select form__control form__control--input-group" name="gender" data-error="Введите пол" required>
                                   <option class="select__option" value="МУЖ">МУЖ</option>
                                   <option class="select__option" value="ЖЕН">ЖЕН</option>
                                 </select>
-                                <p class="help-block text-danger"></p>
+                                <p class="help-block with-errors"></p>
                               </div>
                             </div>
                           </div>
@@ -285,32 +285,34 @@
                             <div class="test__items">
                               <div class="form">
                                 <div class="form__heading form__heading--text-left">Сколько раз в месяц вы ходите в кино: </div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio0" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">не хожу каждый месяц</span>
-                                  </label>
+                                <div class="form-group">
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">не хожу каждый месяц</span>
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">один раз</span>
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">два раза</span>
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">три раза</span>
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">больше трех</span>
+                                    </label>
+                                  </div>
                                 </div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio0" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">один раз</span>
-                                  </label>
-                                </div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio0" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">два раза</span>
-                                  </label>
-                                </div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio0" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">три раза</span>
-                                  </label>
-                                </div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio0" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">больше трех</span>
-                                  </label>
-                                </div>
-                                <p class="help-block text-danger"></p>
+                                <p class="help-block with-errors"></p>
                               </div>
                             </div>
                           </div>
@@ -318,27 +320,29 @@
                             <div class="test__items">
                               <div class="form">
                                 <div class="form__heading form__heading--text-left">Как часто вы ходите в кино на формат 3D:</div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio1" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">Каждый поход в кино</span>
-                                  </label>
+                                <div class="form-group">
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio1" required><span class="form__text">Каждый поход в кино</span>
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio1" required><span class="form__text">В половине случаев</span>
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio1" required><span class="form__text">Только если специальная цена или предложение</span>
+                                    </label>
+                                  </div>
+                                  <div class="form__group">
+                                    <label class="form__label radio">
+                                      <input class="form__radio" type="radio" name="radio1" required><span class="form__text">Не хожу в 3D</span>
+                                    </label>
+                                  </div>
                                 </div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio1" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">В половине случаев</span>
-                                  </label>
-                                </div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio1" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">Только если специальная цена или предложение</span>
-                                  </label>
-                                </div>
-                                <div class="form__group">
-                                  <label class="form__label">
-                                    <input class="form__radio" type="radio" name="radio1" data-validation-required-message="Сделайте свой выбор" required><span class="form__text">Не хожу в 3D</span>
-                                  </label>
-                                </div>
-                                <p class="help-block text-danger"></p>
+                                <p class="help-block with-errors"></p>
                               </div>
                             </div>
                           </div>
@@ -349,13 +353,13 @@
                                 <div class="form__sub-heading">(отметьте несколько, если смотрели больше одного фильма из списка)</div>
                                 <div class="form__heading form__heading--film">Фильмы:</div>
                                 <div class="form__group input-group input-group--select">
-                                  <select class="multiselect form__control form__control--input-group" multiple="multiple" name="films3d" required>
+                                  <select class="multiselect form__control form__control--input-group" multiple="multiple" name="films3d">
                                     <option value="Экшн («Конг: Остров Черепа» или «Меч Короля Артура»)">Экшн («Конг: Остров Черепа» или «Меч Короля Артура»)</option>
                                     <option value="Семейный («Красавицы и Чудовище» или «Пираты Карибского моря: мертвецы не рассказывают сказки»">Семейный («Красавицы и Чудовище» или «Пираты Карибского моря: мертвецы не рассказывают сказки»</option>
                                     <option value="Анимация («Босс-молокосос» или «Зверопой»)">Анимация («Босс-молокосос» или «Зверопой»)</option>
                                     <option value="Супергеройские («Стражи Галактики, Часть 2» или «Чудо-женщина»)">Супергеройские («Стражи Галактики, Часть 2» или «Чудо-женщина»)</option>
                                   </select>
-                                  <p class="help-block text-danger"></p>
+                                  <p class="help-block with-errors"></p>
                                 </div>
                               </div>
                             </div>
@@ -368,54 +372,54 @@
                                   <div class="col-xs-6">
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="1" data-validation-minchecked-message="Выберите минимум 1 чекбокс"><span class="form__text">Синема Парк</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Синема Парк</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="" data-validation-minchecked-message=""><span class="form__text">Формула кино</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Формула кино</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="" data-validation-minchecked-message=""><span class="form__text">Каро</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Каро</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="" data-validation-minchecked-message=""><span class="form__text">Киномакс</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Киномакс</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="" data-validation-minchecked-message=""><span class="form__text">Премьер-зал</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Премьер-зал</span>
                                       </label>
                                     </div>
                                   </div>
                                   <div class="col-xs-6">
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="1" data-validation-minchecked-message="Выберите минимум 1 чекбокс"><span class="form__text">Люксор  </span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Люксор  </span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="" data-validation-minchecked-message=""><span class="form__text">Мираж Синема</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Мираж Синема</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="" data-validation-minchecked-message=""><span class="form__text">Синема Стар</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Синема Стар</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="" data-validation-minchecked-message=""><span class="form__text">Монитор</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Монитор</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox" data-validation-minchecked-minchecked="" data-validation-minchecked-message=""><span class="form__text">Пять звезд</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Пять звезд</span>
                                       </label>
                                     </div>
                                   </div>
@@ -456,7 +460,7 @@
     <!-- Bootstrap Multy Select JavaScript-->
     <script src="js/bootstrap-multiselect.js"></script>
     <!-- Bootstrap Validation JavaScript-->
-    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/validator.js"></script>
     <script src="js/contact_me.js"></script>
     <!-- Masked Input JavaScript-->
     <script src="js/jquery.maskedinput.js"></script>

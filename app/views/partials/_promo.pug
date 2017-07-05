@@ -32,7 +32,7 @@ mixin personalCols(count)
           block
 section#registration.registration
   .container.registration__container
-    form.contactForm(action='./lib/model.php', method='POST', novalidate)
+    form.contactForm(data-toggle='validator', role='form', action='./system/model.php', method='POST', novalidate)
       .row
         .col-xs-12
           h2.sub-heading!= content.index.registration.heading
@@ -47,18 +47,18 @@ section#registration.registration
                       .form.promo__group
                         .form__heading!= promo.heading
                         .form-group.form__group
-                          select.form-control.select.form__control--input-group(class=promo.class, name=promo.name, data-validation-required-message=promo.validation.message, required)
+                          select.form-control.select.form__control--input-group(class=promo.class, name=promo.name, data-error=promo.validation.message, required)
                             each item in promo.select
                               option(value=item.value)!= item.option
-                          p.help-block.text-danger
+                          p.help-block.with-errors
                 else
                   .col-xs-12.col-sm-4(class=(promo.code) ? promo.code : '')
                     .promo__item
                       .form.promo__group(class=(promo.code) ? promo.promoGroup : '')
                         .form__heading!= promo.heading
                         .form-group.form__group
-                          input.form-control.form__control.form__control--mask(class=promo.code ? promo.code : '', placeholder=promo.placeholder, name=promo.name, tabindex='-1', type='text', required, data-validation-required-message=promo.validation.message)
-                          p.help-block.text-danger
+                          input.form-control.form__control.form__control--mask(class=promo.code ? promo.code : '', placeholder=promo.placeholder, name=promo.name, tabindex='-1', type='text', required, data-error=promo.validation.message)
+                          p.help-block.with-errors
                             if (promo.code)
                               .form__submit.form__submit--promo
                                 button.btn.btn--promo(type='button', data-loading-text='<i class="fa fa-spinner fa-spin fa-3x fa-fw btn__icon btn__icon--loading"></i>', data-loaded-text='<i class="fa fa-check btn__icon btn__icon--success" aria-hidden="true"></i>')!= promo.btn
@@ -76,26 +76,26 @@ section#registration.registration
                       .form.personal__group
                         .form__heading!= personal.heading
                         .form-group.form__group
-                          input.form-control.form__control(type='email', name=personal.name, tabindex='-1', data-validator-validemail-message=personal.validation.matches, data-validation-required-message=personal.validation.message, required)
-                          p.help-block.text-danger
+                          input.form-control.form__control(type='email', name=personal.name, tabindex='-1', data-error=personal.validation.message, required)
+                          p.help-block.with-errors
                     when 1
                       .form.personal__group
                         .form__heading!= personal.heading
                         .form-group
                           .form__group.input-group.form__group--date(data-provide='datepicker')
-                            input.form-control.form-control.form__control.form__control--input-group(type='text', name=personal.name, tabindex='-1', placeholder=personal.text, data-validation-required-message=personal.validation.message, required)
+                            input.form-control.form-control.form__control.form__control--input-group(type='text', name=personal.name, tabindex='-1', placeholder=personal.text, data-error=personal.validation.message, required)
                             span.input-group-addon
                               i.ic.form__icon(class=personal.icon)
-                          p.help-block.text-danger
+                          p.help-block.with-errors
                     when 2
                       .form.personal__group
                         .form__heading!= personal.heading
                         .form-group.form__group.input-group.input-group--select
-                          select.form-control.select.form__control.form__control--input-group(name=personal.name, data-validation-required-message=personal.validation.message, required)
+                          select.form-control.select.form__control.form__control--input-group(name=personal.name, data-error=personal.validation.message, required)
                             if (personal.items)
                               each item in personal.items
                                 option.select__option(value=item)!= item
-                          p.help-block.text-danger
+                          p.help-block.with-errors
 
       .row
         .col-xs-10.col-xs-offset-1.col-sm-10.col-sm-offset-1
@@ -110,13 +110,14 @@ section#registration.registration
                           .form__sub-heading!= test.subHeading
                         if (test.items)
                           if (test.items.radio)
-                            each item, count in test.items.radio
-                              .form__group
-                                  label.form__label
-                                    input.form__radio(type='radio', name='radio' + countTest, data-validation-required-message=test.validation.message, required)
-                                    span.form__text!= item
+                            .form-group
+                              each item, count in test.items.radio
+                                .form__group
+                                    label.form__label.radio
+                                      input.form__radio(type='radio', name='radio' + countTest, required)
+                                      span.form__text!= item
 
-                            p.help-block.text-danger
+                            p.help-block.with-errors
                           else if (test.items.checkbox)
                             .row
                               each checkbox in test.items.checkbox
@@ -124,16 +125,16 @@ section#registration.registration
                                   each item, count in checkbox
                                     .form__group
                                       label.form__label
-                                        input.form__checkbox(type='checkbox', name='checkbox', data-validation-minchecked-minchecked=(count == 0) ? test.items.validation.minchecked : '', data-validation-minchecked-message=(count == 0) ? test.items.validation.message : '')
+                                        input.form__checkbox(type='checkbox', name='checkbox')
                                         span.form__text!= item
                         if (test.films)
                           .form__heading.form__heading--film!= test.films.heading
                           if (test.films.items)
                             .form__group.input-group.input-group--select
-                              select.multiselect.form__control.form__control--input-group(multiple='multiple', name=test.films.name, required)
+                              select.multiselect.form__control.form__control--input-group(multiple='multiple', name=test.films.name)
                                 each item in test.films.items
                                   option(value=item)!= item
-                              p.help-block.text-danger
+                              p.help-block.with-errors
       .row
         .col-xs-12.col-sm-10.col-sm-offset-1
           .registration__item.registration__item--last

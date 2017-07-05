@@ -1,15 +1,13 @@
 $(function() {
-
-  $(".contactForm input, .contactForm textarea, .contactForm select").jqBootstrapValidation({
-    preventSubmit: true,
-    submitError: function($form, event, errors) {
-      // additional error messages or events
-    },
-    submitSuccess: function($form, event) {
-      event.preventDefault(); // prevent default submit behaviour
+  $('.contactForm').validator().on('submit', function (e) {
+    var $form = $(this);
+    if (e.isDefaultPrevented()) {
+      // handle the invalid form...
+    } else {
+      e.preventDefault();
       $form.find("[type=submit]").prop("disabled", true).button('loading'); //prevent submit behaviour and display preloading
-      
-      // get values from FORM
+
+       // get values from FORM
       var formname           = 'registration',
           form               = $form.find('[type=submit]').attr("name"),
           cinema             = $form.find('[name=cinema] option:selected').text(),
@@ -49,7 +47,7 @@ $(function() {
       });
 
       $.ajax({
-        url: "../lib/model.php",
+        url: "../system/model.php",
         type: "POST",
         data: {
           form: $.trim(form),
@@ -69,7 +67,7 @@ $(function() {
         },
         cache: false,
         success: function(response) {
-          console.log(response);
+          
           if (response) {
             var list = JSON.parse(response).result;
             if (list.promo_error) {
@@ -110,20 +108,7 @@ $(function() {
           //clear all fields
           //$form.trigger("reset");
         },
-      })
-    },
-    filter: function() {
-      return $(this).is(":visible");
-    },
-  });
-
-  $("a[data-toggle=\"tab\"]").click(function(e) {
-    e.preventDefault();
-    $(this).tab("show");
-  });
-});
-
-/*When clicking on Full hide fail/success boxes */
-$('#name').focus(function() {
-  $('.success').html('');
+      });
+    }
+  }); 
 });

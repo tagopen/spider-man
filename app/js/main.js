@@ -180,7 +180,7 @@
       onChange: function(option, checked) {
         $.ajax({
           type: "POST",
-          url: "../lib/model.php",
+          url: "../system/model.php",
           data: {
             formname: 'place',
             city: $('.select--city').val()
@@ -214,7 +214,7 @@
 
     $.ajax({
       type: "POST",
-      url: "../lib/model.php",
+      url: "../system/model.php",
       data: {
         formname: 'place'
       },
@@ -254,7 +254,7 @@
         filter: '<div class="input-group"><input class="form-control multiselect-search" type="text"></div>',
       },
       onChange: function(option, checked) {
-        cinemaPromoOnline();
+        promoNotRequired();
       }
     });
 
@@ -272,23 +272,27 @@
         filter: '<div class="input-group"><input class="form-control multiselect-search" type="text"></div>',
       },
       onChange: function(option, checked) {
-        cinemaPromoOnline();
+        promoNotRequired();
       }
     });
 
-    function cinemaPromoOnline() {
-      if (($('.select--online').val() == 1) && ($('.select--reg-cinema') == 2)) {
-        $('.promo__item--code').fadeOut();
-      } else {
-        $('.promo__item--code').fadeIn();
-      }
-    }
 
     function promoNotRequired () {
-      if (($('.select--online').val() == 0) && ($('.select--reg-cinema') == 2)) {
-        $('.promo__item--code').removeAttr('required');
+      if ($('.select--online').val() == 0) {
+        $('.promo__item--code').add('.btn--promo').prop('disabled', false);
+        if ($('.select--reg-cinema').val() == 2) {
+          $('.promo__item--code').removeAttr('required');
+        } else {
+          $('.promo__item--code').attr('required', 'required');
+        }
+      } else if ($('.select--online').val() == 1) {
+        if ($('.select--reg-cinema').val() == 2) {
+          $('.promo__item--code').add('.btn--promo').removeAttr('required').prop('disabled', true);
+        } else {
+          $('.promo__item--code').add('.btn--promo').attr('required', 'required').prop('disabled', false);
+        }
       } else {
-        $('.promo__item--code').attr('required', 'required');
+        $('.promo__item--code').add('.btn--promo').prop('disabled', false)
       }
     }
 
@@ -301,7 +305,7 @@
       $btnform.prop("disabled", true).button('loading');
       $.ajax({
         type: "POST",
-        url: "../lib/model.php",
+        url: "../system/model.php",
         data: {
           formname: 'promo',
           cinema: $('[name=cinema] option:selected').text(),
