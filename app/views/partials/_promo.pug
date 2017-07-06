@@ -50,9 +50,9 @@ section#registration.registration
                           select.form-control.select.form__control--input-group(class=promo.class, name=promo.name, data-error=promo.validation.message, required)
                             each item in promo.select
                               option(value=item.value)!= item.option
-                          p.help-block.with-errors
+                          p.help-block.text-danger
                 else
-                  .col-xs-12.col-sm-4(class=(promo.code) ? promo.code : '')
+                  .col-xs-12.col-sm-4
                     .promo__item
                       .form.promo__group(class=(promo.code) ? promo.promoGroup : '')
                         .form__heading!= promo.heading

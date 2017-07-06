@@ -21,19 +21,21 @@
     public $salt = '';
 
     public function __construct () {
-      //DB::$user = 'b18152559_suvvah';
-      //DB::$password = '9Z6n3S2x';
-      //DB::$dbName = 'b18152559_boris';
       
       //DB::$user = 'pimgroup_spider';
       //DB::$password = 'spiderman';
       //DB::$dbName = 'pimgroup_spider';
 
-      DB::$user = 'root';
-      DB::$password = '';
-      DB::$dbName = 'boris';
+      DB::$user = 'u669653623_spm';
+      DB::$password = 'bYZsd4FO5WUl';
+      DB::$dbName = 'u669653623_spm';
+      DB::$host = 'mysql.hostinger.co.uk'; //defaults to localhost if omitted
 
-      DB::$host = 'localhost'; //defaults to localhost if omitted
+      //DB::$user = 'root';
+      //DB::$password = '';
+      //DB::$dbName = 'boris';
+
+      //DB::$host = 'localhost'; //defaults to localhost if omitted
       DB::$encoding = 'utf8'; // defaults to latin1 if omitted
 
       $this->formNamePromocode = 'promo';
@@ -68,10 +70,7 @@
           if ($row['promo_status'] === '0') {
             $this->error['promo_error'] = "Такой промокод уже зарегистрирован!";
           } elseif ($row['promo_status'] === '1') {
-            DB::update('promo', array(
-              'promo_status' => '0'
-            ), "promo_name=%s", $promocode);
-            $this->result['promo_status'] = "Промокод успешно активирован!";
+            $this->result['promo_status'] = "Промокод существует!";
             $_SESSION['promo'] = sha1($this->salt . $promocode);
           }
         }
@@ -97,6 +96,11 @@
         'card_loyalty' => ($data['card_loyalty']) ? implode(", ", $data['card_loyalty']) : '',
         'date_added' => DB::sqleval("NOW()")
       ));
+
+      DB::update('promo', array(
+        'promo_status' => '0',
+        'date_modified' => DB::sqleval("NOW()")
+      ), "promo_name=%s", $data['promo']);
 
       ModelClass::sendMail();
 
@@ -136,7 +140,7 @@
       }*/
 
       if ( (!empty($_POST["form"])) && (isset($_POST["form"])) ) {
-        $post['user_form'] = filter_input(INPUT_POST, 'form', FILTER_SANITIZE_EMAIL);
+        $post['user_form'] = filter_input(INPUT_POST, 'form', FILTER_SANITIZE_STRING);
         $body .= 'Форма: ' . $post['user_form'] . chr(10) . chr(13);
       }
 
@@ -146,37 +150,37 @@
       }
 
       if ( (!empty($_POST["cinema"])) && (isset($_POST["cinema"])) ) {
-        $post['user_cinema'] = filter_input(INPUT_POST, 'cinema', FILTER_SANITIZE_EMAIL);
+        $post['user_cinema'] = filter_input(INPUT_POST, 'cinema', FILTER_SANITIZE_STRING);
         $body .= 'Кинотеатр: ' . $post['user_cinema'] . chr(10) . chr(13);
       }
 
       if ( (!empty($_POST["purchase"])) && (isset($_POST["purchase"])) ) {
-        $post['user_purchase'] = filter_input(INPUT_POST, 'purchase', FILTER_SANITIZE_EMAIL);
+        $post['user_purchase'] = filter_input(INPUT_POST, 'purchase', FILTER_SANITIZE_STRING);
         $body .= 'Свособ оплаты: ' . $post['user_purchase'] . chr(10) . chr(13);
       }
 
       if ( (!empty($_POST["promo"])) && (isset($_POST["promo"])) ) {
-        $post['user_promo'] = filter_input(INPUT_POST, 'promo', FILTER_SANITIZE_EMAIL);
+        $post['user_promo'] = filter_input(INPUT_POST, 'promo', FILTER_SANITIZE_STRING);
         $body .= 'Промо код: ' . $post['user_promo'] . chr(10) . chr(13);
       }
 
       if ( (!empty($_POST["ticket_1"])) && (isset($_POST["ticket_1"])) ) {
-        $post['user_ticket_1'] = filter_input(INPUT_POST, 'ticket_1', FILTER_SANITIZE_EMAIL);
+        $post['user_ticket_1'] = filter_input(INPUT_POST, 'ticket_1', FILTER_SANITIZE_STRING);
         $body .= 'Билет №1: ' . $post['user_ticket_1'] . chr(10) . chr(13);
       }
 
       if ( (!empty($_POST["ticket_2"])) && (isset($_POST["ticket_2"])) ) {
-        $post['user_ticket_2'] = filter_input(INPUT_POST, 'ticket_2', FILTER_SANITIZE_EMAIL);
+        $post['user_ticket_2'] = filter_input(INPUT_POST, 'ticket_2', FILTER_SANITIZE_STRING);
         $body .= 'Билет №2: ' . $post['user_ticket_2'] . chr(10) . chr(13);
       }
 
       if ( (!empty($_POST["birthday"])) && (isset($_POST["birthday"])) ) {
-        $post['user_birthday'] = filter_input(INPUT_POST, 'birthday', FILTER_SANITIZE_EMAIL);
+        $post['user_birthday'] = filter_input(INPUT_POST, 'birthday', FILTER_SANITIZE_STRING);
         $body .= 'День рождения: ' . $post['user_birthday'] . chr(10) . chr(13);
       }
 
       if ( (!empty($_POST["gender"])) && (isset($_POST["gender"])) ) {
-        $post['user_gender'] = filter_input(INPUT_POST, 'gender', FILTER_SANITIZE_EMAIL);
+        $post['user_gender'] = filter_input(INPUT_POST, 'gender', FILTER_SANITIZE_STRING);
         $body .= 'Пол: ' . $post['user_gender'] . chr(10) . chr(13);
       }
 
@@ -203,21 +207,13 @@
 
         $body .= 'Каким жанрам в 3D вы отдавали предпочтение последние полгода: ' . $post['genre'] . chr(10) . chr(13);
       }
-      
-      if ( (!empty($_POST["cinema_3d"])) && (isset($_POST["cinema_3d"])) ) {
-        foreach( $_POST["cinema_3d"] as $key => $value) { 
-          $post['cinema_3d'] .= $value . ', ';
-        }
-
-        $body .= 'Сколько раз в месяц вы ходите в кино: ' . $post['cinema_3d'] . chr(10) . chr(13);
-      }  
 
       if ( (!empty($_POST["card_loyalty"])) && (isset($_POST["card_loyalty"])) ) {
         foreach( $_POST["card_loyalty"] as $key => $value) { 
           $post['card_loyalty'] = $value;
         }
 
-        $body .= 'Сколько раз в месяц вы ходите в кино: ' . $post['card_loyalty'] . chr(10) . chr(13);
+        $body .= 'Есть ли у вас карта лояльности какой-нибудь киносети: ' . $post['card_loyalty'] . chr(10) . chr(13);
       }
 
       $body .= chr(10) . chr(13) . "С уважением," . chr(10) . chr(13) . "разработчики сайта " . $post['host_referer'];
@@ -226,12 +222,12 @@
       $mail->CharSet      = 'UTF-8';
       //$mail->IsSendmail();
 
-      $from = 'no-repeat@tagopen.com';
-      $to = "Artem2431@gmail.com";
+      $from = 'order@spiderman.reald3d.ru';
+      $to = "avdeevkk@gmail.com";
       $mail->SetFrom($from, HOST_NAME);
       $mail->AddAddress($to);
       $mail->isHTML(false);
-      $mail->Subject      = "Новая заявка";
+      $mail->Subject      = "Новая заявка 'Человек паук, возвращение домой'";
       $mail->Body         = $body;
 
       if(!$mail->send()) {
@@ -245,7 +241,6 @@
       if ($this->error) {
         echo json_encode(array("result" => $this->error), JSON_FORCE_OBJECT);
         return false;
-        //echo json_encode(array("result" => "Такого кода не существует!"), JSON_FORCE_OBJECT);
       } elseif ($this->result) {
         echo json_encode(array("result" => $this->result), JSON_FORCE_OBJECT);
         return true;
@@ -293,7 +288,7 @@
             $this->error['promo_error'] = "Выберите, сколько раз в месяц вы ходите в кино";
           } elseif (!isset($post['cinema_3d'])) {
             $this->error['promo_error'] = "Выберите, как часто вы ходите в кино на формат 3D";
-          } elseif (($_SESSION['promo'] == sha1($this->salt . $post['promo'])) || (strcasecmp ($post['cinema'], "Синема парк") == 0)) {//Never did this
+          } elseif (($_SESSION['promo'] == sha1($this->salt . $post['promo'])) || (strcasecmp ($post['cinema'], "Национальная сеть кинотеатров СИНЕМА ПАРК") == 0)) {//Never did this
             $data = array(
               'cinema' => $post['cinema'],
               'purchase' => $post['purchase'],
@@ -311,7 +306,7 @@
 
             ModelClass::setOrder($data);
           } else {
-            $this->error['promo_error'] = "Воспользуйтесь кнопкой \"Принять промокод\"";
+            $this->error['promo_error'] = "Воспользуйтесь кнопкой \"Проверить промокод\"";
           }
         }
 
