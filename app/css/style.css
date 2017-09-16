@@ -664,19 +664,6 @@ input[type=radio]:focus, input[type=checkbox]:focus, select:focus {
   color: #00800a;
 }
 
-button[disabled],
-input[disabled] {
-  cursor: default;
-  opacity: 0.3;
-  background: rgba(0, 0, 0, 0.31);
-}
-
-button[disabled]:hover, button[disabled]:focus,
-input[disabled]:hover,
-input[disabled]:focus {
-  background: rgba(0, 0, 0, 0.31);
-}
-
 @media only screen and (min-width: 768px) {
   .btn__icon {
     padding: 0;
@@ -725,9 +712,9 @@ input[disabled]:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  -webkit-transition: all .3s ease-out;
-  transition: all .3s ease-out;
+  transition: 0.3s;
 }
+
 
 @media only screen and (max-width: 767px) {
   .body {
@@ -890,11 +877,11 @@ input[disabled]:focus {
 
 .header__container {
   position: relative;
-  -webkit-animation: bounceInUp 1s;
-          animation: bounceInUp 1s;
   z-index: 2;
 }
-
+.container.header__container {
+    -webkit-animation: bounceInUp 1s;
+}
 .header__heading {
   margin: 0;
   color: #fff;
@@ -1406,8 +1393,7 @@ input[disabled]:focus {
   color: #000;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .form__control--input-group {
@@ -1415,7 +1401,9 @@ input[disabled]:focus {
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
-  background-image: #d9d9d9;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#eaeaea), to(#fcfcfc));
+  background-image: -webkit-linear-gradient(bottom, #eaeaea 0%, #fcfcfc 100%);
+  background-image: linear-gradient(to top, #eaeaea 0%, #fcfcfc 100%);
   color: #0a0a0a;
   text-transform: initial;
 }
@@ -1434,12 +1422,12 @@ input[disabled]:focus {
 }
 
 .input-group-addon {
-  background: #d9d9d9;
-  padding: 7px 12px;
-  -webkit-border-radius: 0 4px 4px 0;
-          border-radius: 0 4px 4px 0;
-  border: 0 none;
-  cursor: pointer;
+background: #d9d9d9;
+    padding: 7px 12px;
+    -webkit-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+    border: 0px solid #ebebeb;
+    cursor: pointer;
 }
 
 input[type="radio"],
@@ -1581,3 +1569,8 @@ input[type="checkbox"] {
 /* ------------------------------------------ */
 /* S E C T I O N    F O O T E R    S T Y L E  */
 /* ------------------------------------------ */
+button[disabled], html input[disabled] {
+    cursor: default;
+    opacity: 0.3;
+    background: rgba(0, 0, 0, 0.31);
+}

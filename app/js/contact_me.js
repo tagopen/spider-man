@@ -10,14 +10,14 @@ $(function() {
        // get values from FORM
       var formname           = 'registration',
           form               = $form.find('[type=submit]').attr("name"),
-          cinema             = $form.find('[name=cinema] option:selected').text(),
-          purchase           = $form.find('[name=online] option:selected').text(),
           promo              = $form.find('[name=promocode]').val(),
           ticket_1           = $form.find('[name=ticket1]').val(),
           ticket_2           = $form.find('[name=ticket2]').val(),
           email              = $form.find('[name=email]').val(),
           birthday           = $form.find('[name=date]').val(),
           gender             = $form.find('[name=gender]').val(),
+          cinema             = $form.find('[name=cinema] option:selected').text(),
+          purchase           = $form.find('[name=online] option:selected').text(),
           cinema_per_month   = new Array(),
           cinema_3d          = new Array(),
           genre              = $form.find("[name^=\"films3d\"]").val(),
@@ -52,14 +52,14 @@ $(function() {
         data: {
           form: $.trim(form),
           formname: $.trim(formname),
-          cinema: $.trim(cinema),
-          purchase: $.trim(purchase),
           promo: $.trim(promo),
           ticket_1: $.trim(ticket_1),
           ticket_2: $.trim(ticket_2),
           email: $.trim(email),
           birthday: $.trim(birthday),
           gender: $.trim(gender),
+          cinema: $.trim(cinema),
+          purchase: $.trim(purchase),
           cinema_per_month: cinema_per_month,
           cinema_3d: cinema_3d,
           genre: genre,
@@ -99,7 +99,7 @@ $(function() {
           $form.find('.success').html("<div class='alert alert-danger'>");
           $form.find('.success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
             .append("</button>");
-          $form.find('.success > .alert-danger').append("<strong>Приносим свои извинения, но наш почтовый сервер времено не работает. Попробуйте, отправить сообщение еще раз и сообщите нам о проблеме!");
+          $form.find('.success > .alert-danger').append("<strong>Письмо не отправлено. Пожалуйста, проверьте ваше интернет соединения и попробуйте еще раз!");
           $form.find('.success > .alert-danger').append('</div>');
 
           // remove prevent submit behaviour and disable preloading

@@ -3,9 +3,13 @@
   <head>
     <title>Человек паук, возвращение домой</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <!-- Google Tag Manager -->
+
+<!-- End Google Tag Manager -->
+
     <!-- Meta SEO - Description, Keywords, Title-->
     <meta name="title" content="Человек паук, возвращение домой"/>
-    <meta name="description" content=""/>
+    <meta name="description" content="Купите 2 билета на фильм Человек-Паук: Возвращение домой в формате REALD 3D, и участвуйте в акции"/>
     <meta name="keywords" content=""/>
     <!-- Multilanguage localization-->
     <link rel="alternate" href="/" hreflang="x-default"/>
@@ -15,27 +19,34 @@
     <meta name="MobileOptimized" content="320"/>
     <!--[if IEMobile]><meta http-equiv='cleartype' content='on' /><![endif]-->
     <!-- Replace favicon.ico and apple-touch-icon.png-->
-    <link rel="shortcut icon" type="image/png" href="img/logo/favicon.png">
-    <link rel="apple-touch-icon" type="image/png" href="img/logo/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.ico">
+    <link rel="apple-touch-icon" type="image/png" href="favicon.ico">
     <!-- Disables automatic  of possible phone numbers and address in Safari on iOS-->
     <meta name="format-detection" content="telephone=no"/>
     <meta name="format-detection" content="address=no"/>
     <!-- Microformats Open Graph-->
-    <meta property="og:title" content="Site name"/>
-    <meta property="og:site_name" content="Site name"/>
-    <meta property="og:description" content="Описание сайта"/>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Человек паук, возвращение домой"/>
+    <meta property="og:site_name" content="Человек паук, возвращение домой"/>
+    <meta property="og:description" content="Купите 2 билета на фильм Человек-Паук: Возвращение домой в формате REALD 3D, и участвуйте в акции"/>
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="ru_RU"/>
-    <meta property="og:image" content="/img/logo/microformat.pngmicroformat.png"/>
+    <meta property="og:image" content="http://spiderman.reald3d.ru/og-img.jpg"/>
     <meta property="og:image:type" content="image/png"/>
-    <meta property="og:url" content=""/>
+    <meta property="og:url" content="http://spiderman.reald3d.ru/"/>
     <!-- Microformats Twitter Cards-->
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:site" content="@flickr"/>
-    <meta name="twitter:title" content="My Site"/>
-    <meta name="twitter:description" content="My Site is cool"/>
-    <meta name="twitter:image" content="/img/logo/microformat.png"/>
+    <meta name="twitter:domain" content="http://spiderman.reald3d.ru/">
+    <meta name="twitter:title" content="Человек паук, возвращение домой"/>
+    <meta name="twitter:description" content="Купите 2 билета на фильм Человек-Паук: Возвращение домой в формате REALD 3D, и участвуйте в акции"/>
+    <meta name="twitter:image" content="http://spiderman.reald3d.ru/og-img.jpg"/>
     <!-- build:css css/bundle.min.css-->
+    <!--
+<meta itemprop="name" content="Человек паук, возвращение домой"> 
+<meta itemprop="description" content="Купите 2 билета на фильм Человек-Паук: Возвращение домой в формате REALD 3D, и участвуйте в акции"> 
+<meta itemprop="image" content="http://spiderman.reald3d.ru/og-img.jpg">
+-->
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -47,14 +58,35 @@
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="https://daneden.github.io/animate.css/animate.min.css" />
     <!-- endbuild-->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!-- WARNING: Respond.js doesn't work if you view the page via file://--><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<!-- Google Tag Manager -->
+
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+})(window,document,'script','dataLayer','GTM-PHLT5X2');</script>
+ -->
+<!-- End Google Tag Manager -->
+
   </head>
   <body class="body">
+
+<style>
+input.form-control.multiselect-search { display: none;}
+.slider__img {    transition: 0.3s;}
+.slider__img:hover {    opacity: 0.8;}
+</style>
     <div class="wrapper">
       <nav class="navbar">
         <div class="container navbar__container">
@@ -76,6 +108,9 @@
           </div>
         </div>
       </header>
+      <style>.action__btn-group.towncinema .btn-group {
+    display: block;
+}</style>
       <section class="action" id="action">
         <div class="container action__container">
           <div class="row">
@@ -85,7 +120,7 @@
               <div class="action__text action__text--format">в формате <i class="ic ic--real3dBlack"></i>
               </div>
               <div class="action__text action__text--stock">и участвуйте в акции:</div>
-              <div class="action__btn-group">
+              <div class="action__btn-group towncinema">
                 <select class="select action__btn select--city btn--default"></select>
                 <select class="select action__btn select--cinema btn--default"></select>
               </div>
@@ -114,8 +149,8 @@
               <div class="slider">
                       <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-lg-6 col-lg-offset-0 slider__col">
                         <div class="slider__item">
-                          <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-2.png" alt="Sony PlayStation 4 Slim"></div>
-                          <div class="slider__descr">Sony PlayStation 4 Slim</div>
+                          <div class="slider__photo"><img class="img-responsive slider__img" src="img/product-2.png" alt="Sony PlayStation 4"></div>
+                          <div class="slider__descr">Sony PlayStation 4</div>
                         </div>
                       </div>
                       <div class="col-xs-12 col-sm-5 col-lg-6 slider__col">
@@ -172,7 +207,7 @@
                               <option value="1">Сеть кинотеатров КАРО</option>
                               <option value="2">Национальная сеть кинотеатров СИНЕМА ПАРК</option>
                             </select>
-                            <p class="help-block text-danger"></p>
+                            <p class="help-block with-errors"></p>
                           </div>
                         </div>
                       </div>
@@ -184,14 +219,20 @@
                           <div class="form-group form__group">
                             <select class="form-control select form__control--input-group select--online" name="online" data-error="Выберите способ оплаты" required>
                               <option value="1">Онлайн</option>
-                              <option value="0">Офлайн</option>
+                              <option value="0">Оффлайн</option>
                             </select>
-                            <p class="help-block text-danger"></p>
+                            <p class="help-block with-errors"></p>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-xs-12 col-sm-4">
+                    <style>
+                      .fa-check:before {
+    content: "свободен";
+    font: 300 13px/19px "PTSansProNarrow", sans-serif;
+}п
+                    </style>
+                    <div class="col-xs-12 col-sm-4 promo__item--code">
                       <div class="promo__item">
                         <div class="form promo__group form--promo">
                           <div class="form__heading">Номер промо-кода: </div>
@@ -199,7 +240,7 @@
                             <input class="form-control form__control form__control--mask promo__item--code" placeholder="ХХХXХХХХХ" name="promocode" tabindex="-1" type="text" required data-error="Введите промо-код">
                             <p class="help-block with-errors">
                               <div class="form__submit form__submit--promo">
-                                <button class="btn btn--promo" type="button" data-loading-text="&lt;i class=&quot;fa fa-spinner fa-spin fa-3x fa-fw btn__icon btn__icon--loading&quot;&gt;&lt;/i&gt;" data-loaded-text="&lt;i class=&quot;fa fa-check btn__icon btn__icon--success&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">Применить</button>
+                                <button class="btn btn--promo" type="button" data-loading-text="&lt;i class=&quot;fa fa-spinner fa-spin fa-3x fa-fw btn__icon btn__icon--loading&quot;&gt;&lt;/i&gt;" data-loaded-text="&lt;i class=&quot;fa fa-check btn__icon btn__icon--success&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">Проверить</button>
                               </div>
                             </p>
                           </div>
@@ -284,31 +325,31 @@
                           <div class="col-xs-12 col-sm-6 col-lg-3">
                             <div class="test__items">
                               <div class="form">
-                                <div class="form__heading form__heading--text-left">Сколько раз в месяц вы ходите в кино: </div>
+                                <div class="form__heading form__heading--text-left">Как часто вы смотрите фильмы в кино:</div>
                                 <div class="form-group">
                                   <div class="form__group">
                                     <label class="form__label radio">
-                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">не хожу каждый месяц</span>
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">Не хожу в кино</span>
                                     </label>
                                   </div>
                                   <div class="form__group">
                                     <label class="form__label radio">
-                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">один раз</span>
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">1-2 раза в год</span>
                                     </label>
                                   </div>
                                   <div class="form__group">
                                     <label class="form__label radio">
-                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">два раза</span>
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">Раз в полгода</span>
                                     </label>
                                   </div>
                                   <div class="form__group">
                                     <label class="form__label radio">
-                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">три раза</span>
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">Раз в 3 месяца</span>
                                     </label>
                                   </div>
                                   <div class="form__group">
                                     <label class="form__label radio">
-                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">больше трех</span>
+                                      <input class="form__radio" type="radio" name="radio0" required><span class="form__text">Каждый месяц</span>
                                     </label>
                                   </div>
                                 </div>
@@ -355,7 +396,7 @@
                                 <div class="form__group input-group input-group--select">
                                   <select class="multiselect form__control form__control--input-group" multiple="multiple" name="films3d">
                                     <option value="Экшн («Конг: Остров Черепа» или «Меч Короля Артура»)">Экшн («Конг: Остров Черепа» или «Меч Короля Артура»)</option>
-                                    <option value="Семейный («Красавицы и Чудовище» или «Пираты Карибского моря: мертвецы не рассказывают сказки»">Семейный («Красавицы и Чудовище» или «Пираты Карибского моря: мертвецы не рассказывают сказки»</option>
+                                    <option value="Семейный («Красавица и Чудовище» или «Пираты Карибского моря: мертвецы не рассказывают сказки»">Семейный («Красавица и Чудовище» или «Пираты Карибского моря: мертвецы не рассказывают сказки»</option>
                                     <option value="Анимация («Босс-молокосос» или «Зверопой»)">Анимация («Босс-молокосос» или «Зверопой»)</option>
                                     <option value="Супергеройские («Стражи Галактики, Часть 2» или «Чудо-женщина»)">Супергеройские («Стражи Галактики, Часть 2» или «Чудо-женщина»)</option>
                                   </select>
@@ -372,39 +413,31 @@
                                   <div class="col-xs-6">
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Синема Парк</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Национальная сеть кинотеатров СИНЕМА ПАРК</span>
+                                      </label>
+                                    </div>
+
+                                    <div class="form__group">
+                                      <label class="form__label">
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Сеть кинотеатров КАРО</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Формула кино</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Сеть кинотеатров КИНОМАКС</span>
                                       </label>
                                     </div>
-                                    <div class="form__group">
-                                      <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Каро</span>
-                                      </label>
-                                    </div>
-                                    <div class="form__group">
-                                      <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Киномакс</span>
-                                      </label>
-                                    </div>
-                                    <div class="form__group">
-                                      <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Премьер-зал</span>
-                                      </label>
-                                    </div>
+                                
                                   </div>
                                   <div class="col-xs-6">
                                     <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Люксор  </span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Люксор</span>
                                       </label>
                                     </div>
-                                    <div class="form__group">
+                                                                        <div class="form__group">
                                       <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Мираж Синема</span>
+                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Формула кино</span>
                                       </label>
                                     </div>
                                     <div class="form__group">
@@ -412,11 +445,7 @@
                                         <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Синема Стар</span>
                                       </label>
                                     </div>
-                                    <div class="form__group">
-                                      <label class="form__label">
-                                        <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Монитор</span>
-                                      </label>
-                                    </div>
+                               
                                     <div class="form__group">
                                       <label class="form__label">
                                         <input class="form__checkbox" type="checkbox" name="checkbox"><span class="form__text">Пять звезд</span>
@@ -431,13 +460,25 @@
                 </div>
               </div>
             </div>
+            <style>p.registration__rule {
+    display: block;
+    opacity: 1;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+}</style>
             <div class="row">
               <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <div class="registration__item registration__item--last">
                   <div class="registration__btn-group">
                     <button class="btn btn--orange registration__btn" type="submit" name="Форма регистации" data-loading-text="&lt;i class='fa fa-circle-o-notch fa-spin'&gt;&lt;/i&gt; Форма отправляется...">Зарегистрировать</button>
                   </div>
-                  <div class="registration__btn-group"><a class="registration__rule" target="_blank" href="2_5379580592759242930[1333].pdf">Правила акции</a></div>
+                  <div class="registration__btn-group"><a class="registration__rule" target="_blank" href="2_5379580592759242930[1333].pdf">Правила акции</a>
+                  <br><br>
+                  <p class="registration__rule">Поддержка</p>
+                  <a class="registration__rule" href="mailto:spiderman@reald3d.ru">spiderman@reald3d.ru</a>
+                  </div>
                 </div>
                 <div class="success"></div>
               </div>
@@ -471,5 +512,12 @@
     <!-- Custom JavaScript-->
     <script src="js/main.js"></script>
     <!-- endbuild-->
+    <!-- Google Tag Manager (noscript) -->
+
+<!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHLT5X2"
+
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+
+<!-- End Google Tag Manager (noscript) -->
   </body>
 </html>

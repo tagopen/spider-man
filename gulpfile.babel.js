@@ -69,10 +69,8 @@ gulp.task('scripts', ['bower'], () => {
      'bower_components/bootstrap/dist/js/bootstrap.js',
      'bower_components/slick-carousel/slick/slick.js',
      'bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
-     'bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
      'bower_components/jquery.maskedinput/dist/jquery.maskedinput.js',
      'bower_components/matchHeight/dist/jquery.matchHeight.js',
-     'bower_components/bootstrap-validator/dist/validator.js',
      'bower_components/bootstrap-multiselect/dist/js/bootstrap-multiselect.js',
      'bower_components/bootstrap-validator/dist/validator.js'
    ])
@@ -274,7 +272,7 @@ gulp.task('watch', ['browser-sync', 'pug', 'fonts', 'sprite', 'sass',  'scripts'
 //    .pipe(gulp.dest('dist'));
 //});
 
-gulp.task('dev', ['clean', 'pug', 'fonts', 'sprite', 'img', 'sass', 'scripts'], () => {
+gulp.task('dev', ['clean', 'fonts', 'sprite', 'img', 'scripts'], () => {
 
   let buildmail = gulp.src(path.watch.mail)
     .pipe(gulp.dest(path.build.mail));
@@ -290,7 +288,7 @@ gulp.task('dev', ['clean', 'pug', 'fonts', 'sprite', 'img', 'sass', 'scripts'], 
       searchPath: dirs.src
     }))
     .pipe($.if(
-      '*.js', $.uglifyjs()
+      '*.js', $.javascriptObfuscator()
     ))
     .pipe($.if(
       '*.css', $.cssnano({
